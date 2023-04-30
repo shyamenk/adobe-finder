@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @layer base {
+  .input {
+    @apply w-80 border-gray-300 rounded-lg shadow-sm px-2 py-3;
+  }
+} */
