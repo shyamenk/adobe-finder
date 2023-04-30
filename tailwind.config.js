@@ -5,9 +5,12 @@ module.exports = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  darkMode: 'class', // or 'media' or 'class'
+  darkMode: 'class',
   theme: {
     extend: {
+      fontFamily: {
+        roboto: ['Roboto Mono', 'monospace'],
+      },
       colors: {
         bluegray: {
           50: '#F7F8FA',
