@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  purge: [
+  content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
@@ -8,9 +8,6 @@ module.exports = {
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['Lato', 'sans-serif'],
-      },
       colors: {
         bluegray: {
           50: '#F7F8FA',
