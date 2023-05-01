@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+import plugin from '@tailwindcss/typography';
+
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -9,20 +12,34 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        roboto: ['Roboto Mono', 'monospace'],
+        // sans: ['var(--font-dm_Sans)'],
       },
       colors: {
-        bluegray: {
-          50: '#F7F8FA',
-          100: '#EEF1F5',
-          200: '#D4DCE5',
-          300: '#BBC5D5',
-          400: '#8691B5',
-          500: '#516C95',
-          600: '#496288',
-          700: '#31425A',
-          800: '#252F46',
-          900: '#191C2C',
+        primary: {
+          DEFAULT: '#05112e', // primary color
+        },
+        secondary: {
+          DEFAULT: '#39c4ff', // secondary color
+        },
+        accent: {
+          DEFAULT: '#fbfbfb', // accent color
+        },
+        mode: {
+          light: '#ffff', // light mode background color
+          dark: '#111827', // dark mode background color
+        },
+        error: {
+          DEFAULT: '#ff0000', // error color
+        },
+        link: {
+          DEFAULT: '#007aff', // link color
+        },
+        heading: {
+          DEFAULT: '#333', // default text color
+          h1: '#444', // color for h1 headings
+          h2: '#555', // color for h2 headings
+          h3: '#666', // color for h3 headings
+          p: '#868686', // color for paragraph
         },
       },
       animation: {
@@ -44,5 +61,23 @@ module.exports = {
       },
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/forms'),
+    plugin(({ matchUtilities, theme }) => {
+      matchUtilities(
+        {
+          'animation-delay': (value) => {
+            return {
+              'animation-delay': value,
+            };
+          },
+        },
+        {
+          values: theme('transitionDelay'),
+        }
+      );
+    }),
+  ],
 };
