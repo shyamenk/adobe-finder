@@ -15,9 +15,7 @@ export default function RootLayout({
       <body>
         <Providers>
           <SiteHeader />
-          <main className="h-screen bg-mode-light text-mode-dark dark:bg-mode-dark dark:text-mode-light">
-            {children}
-          </main>
+          <main>{children}</main>
           <SiteFooter />
         </Providers>
       </body>

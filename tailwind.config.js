@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('tailwindcss').Config} */
-
+const colors = require('tailwindcss/colors');
 import plugin from '@tailwindcss/typography';
 
 module.exports = {
@@ -11,15 +12,13 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
-      fontFamily: {
-        // sans: ['var(--font-dm_Sans)'],
-      },
       colors: {
         primary: {
           DEFAULT: '#05112e', // primary color
         },
         secondary: {
-          DEFAULT: '#39c4ff', // secondary color
+          DEFAULT: '#38bdf8', // secondary color
+          light: '#39b5ff',
         },
         accent: {
           DEFAULT: '#fbfbfb', // accent color
@@ -28,6 +27,7 @@ module.exports = {
           light: '#ffff', // light mode background color
           dark: '#111827', // dark mode background color
         },
+
         error: {
           DEFAULT: '#ff0000', // error color
         },
@@ -59,12 +59,14 @@ module.exports = {
           '100%': { transform: 'translate(0, 0)', opacity: 1 },
         },
       },
+      gray: colors.zinc,
     },
   },
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/forms'),
+    require('prettier-plugin-tailwindcss'),
     plugin(({ matchUtilities, theme }) => {
       matchUtilities(
         {
