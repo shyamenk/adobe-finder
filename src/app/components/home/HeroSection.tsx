@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { FC } from 'react';
-
 const HeroSection: FC = () => {
   return (
     <section className="bg-mode-light  text-mode-dark dark:bg-mode-dark dark:text-mode-light">
@@ -12,8 +11,10 @@ const HeroSection: FC = () => {
             className="xl:h-112 2xl:h-128 h-72 sm:h-80 lg:h-96"
             width={800}
             height={800}
+            priority
           />
         </div>
+
         <div className="flex flex-col justify-center rounded-sm text-center lg:max-w-md lg:text-left xl:max-w-lg">
           <h1 className="text-5xl font-bold leading-none sm:text-6xl">
             Find Your
@@ -29,16 +30,10 @@ const HeroSection: FC = () => {
             <a
               rel="noopener noreferrer"
               href="#"
-              className="rounded px-8 py-3 text-lg font-semibold dark:dark:bg-secondary dark:dark:text-gray-900"
+              // className="rounded-full border px-4 py-2 text-lg font-semibold opacity-95 transition-all duration-500 ease-in-out dark:border-gray-50  dark:hover:bg-secondary-light dark:hover:text-primary"
+              className="btn-primary"
             >
-              Search
-            </a>
-            <a
-              rel="noopener noreferrer"
-              href="#"
-              className="rounded border px-6 py-3 text-lg font-semibold dark:dark:border-gray-100"
-            >
-              + Add Property
+              Buy Now
             </a>
           </div>
         </div>

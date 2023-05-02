@@ -3,15 +3,16 @@ import { FC } from 'react';
 import { useState } from 'react';
 import ThemeButton from '@/utils/ThemeChanger';
 import Link from 'next/link';
+import { SignInButton, UserButton } from '@clerk/nextjs';
+import { SignedIn, SignedOut } from '@clerk/nextjs/app-beta/client';
 
 import { MdOutlineRealEstateAgent } from 'react-icons/md';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { AiOutlineClose } from 'react-icons/ai';
+// import { FaUserCircle } from 'react-icons/fa';
 
 const NavBar: FC = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-
-  const isAuthenticated = true;
 
   const navigation = [
     { id: 1, name: 'Home', link: './' },
@@ -51,21 +52,16 @@ const NavBar: FC = () => {
           </div>
           <div className="hidden items-center space-x-4 md:flex ">
             <ThemeButton />
-            {isAuthenticated ? (
-              <Link
-                href=""
-                className="rounded-full border bg-secondary px-8 py-2 font-semibold dark:border-primary dark:bg-secondary dark:text-gray-800"
-              >
-                Login
-              </Link>
-            ) : (
-              <Link
-                href=""
-                className="rounded bg-green-500 px-2 py-2 font-medium text-white transition duration-300 hover:bg-green-400"
-              >
-                Sign Up
-              </Link>
-            )}
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+            <SignedOut>
+              <SignInButton mode="modal">
+                <button className='dark:text-primary"> rounded-full border border-gray-400 px-4 py-1 font-semibold hover:border-none hover:bg-secondary hover:text-white dark:border-none dark:bg-secondary'>
+                  Sign in
+                </button>
+              </SignInButton>
+            </SignedOut>
           </div>
           <div className="flex items-center md:hidden">
             <button

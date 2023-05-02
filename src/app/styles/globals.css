@@ -5,3 +5,25 @@
 main {
   @apply bg-mode-light text-mode-dark antialiased dark:bg-mode-dark dark:text-mode-light;
 }
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top-color: #1a202c;
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  animation: spin 1s ease-in-out infinite;
+}
+@layer components {
+  .btn-primary {
+    @apply rounded-full bg-sky-400 px-4 py-2 font-semibold text-white shadow-md hover:bg-sky-600 dark:bg-sky-600 dark:text-white dark:hover:bg-sky-500 dark:focus:outline-none dark:focus:ring-2 dark:focus:ring-sky-400 dark:focus:ring-opacity-75;
+  }
+  .btn-secondary {
+    @apply rounded-full bg-blue-950 px-4 py-2 font-semibold text-white shadow-md hover:bg-sky-600 dark:bg-sky-600 dark:text-white dark:hover:bg-sky-500 dark:focus:outline-none dark:focus:ring-2 dark:focus:ring-sky-400 dark:focus:ring-opacity-75;
+  }
+}

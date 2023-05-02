@@ -9,7 +9,6 @@ const Header = () => {
         name="description"
         content="The Ultimate Destination for Property Hunting"
       />
-
       <link rel="icon" href="/favicon.ico" />
     </Head>
   );
