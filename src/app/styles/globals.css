@@ -5,6 +5,10 @@
 main {
   @apply bg-mode-light text-mode-dark antialiased dark:bg-mode-dark dark:text-mode-light;
 }
+
+.dark-mode {
+  @apply bg-mode-light text-mode-dark antialiased dark:bg-mode-dark dark:text-mode-light;
+}
 @keyframes spin {
   to {
     transform: rotate(360deg);

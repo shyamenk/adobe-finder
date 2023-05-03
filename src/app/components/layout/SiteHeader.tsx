@@ -15,7 +15,8 @@ const NavBar: FC = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   const navigation = [
-    { id: 1, name: 'Home', link: './' },
+    { id: 1, name: 'Home', link: '/' },
+    { id: 1, name: 'Listing', link: '/listings' },
     { id: 2, name: 'Search', link: '/search' },
     { id: 3, name: 'Favourite', link: '/favourites' },
     { id: 4, name: 'About', link: '/about' },

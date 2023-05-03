@@ -1,17 +1,15 @@
-import Image from 'next/image';
+import CustomImage from '@/components/utils/CustomImage';
 import { FC } from 'react';
 const HeroSection: FC = () => {
   return (
     <section className="bg-mode-light  text-mode-dark dark:bg-mode-dark dark:text-mode-light">
       <div className=" container mx-auto flex flex-col justify-center p-6  sm:py-12 md:px-10 lg:flex-row lg:justify-between lg:py-24">
-        <div className="xl:h-112 2xl:h-128 mt-4 flex h-72 items-center justify-center  sm:h-80 lg:mt-0 lg:h-96">
-          <Image
+        <div className="xl:h-112 2xl:h-128 mt-4 flex h-72 items-center justify-center pb-10 sm:h-80 md:pb-8 lg:mt-0 lg:h-96">
+          <CustomImage
+            width={600}
+            height={600}
+            alt="hero"
             src="/images/hero/hero.svg"
-            alt=""
-            className="xl:h-112 2xl:h-128 h-72 sm:h-80 lg:h-96"
-            width={800}
-            height={800}
-            priority
           />
         </div>
 
