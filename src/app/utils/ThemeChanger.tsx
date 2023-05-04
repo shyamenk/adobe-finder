@@ -10,7 +10,7 @@ const ThemeButton: FC = () => {
   };
 
   const iconProps: React.SVGProps<SVGSVGElement> = {
-    className: 'w-5 h-5 text-secondary',
+    className: 'w-5 h-5 dark:text-secondary text-primary',
   };
 
   if (resolvedTheme === 'dark') {

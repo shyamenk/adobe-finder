@@ -1,10 +1,11 @@
-import FileUpload from '@/components/utils/FileUpload';
+// import Switch from '@/components/ui/Switch';
 import { FC } from 'react';
 
 const page: FC = () => {
   return (
     <div className="h-screen">
-      <FileUpload />
+      {/* <Switch /> */}
+      {/* <FileUpload /> */}
     </div>
   );
 };

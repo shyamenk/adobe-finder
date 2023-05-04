@@ -16,10 +16,10 @@ const NavBar: FC = () => {
 
   const navigation = [
     { id: 1, name: 'Home', link: '/' },
-    { id: 1, name: 'Listing', link: '/listings' },
-    { id: 2, name: 'Search', link: '/search' },
-    { id: 3, name: 'Favourite', link: '/favourites' },
-    { id: 4, name: 'About', link: '/about' },
+    { id: 2, name: 'Listing', link: '/listings' },
+    { id: 3, name: 'Search', link: '/search' },
+    { id: 4, name: 'Favourite', link: '/favourites' },
+    { id: 5, name: 'About', link: '/about' },
   ];
 
   return (
@@ -32,10 +32,12 @@ const NavBar: FC = () => {
                 href="/"
                 className="flex items-center justify-between px-2 py-4"
               >
-                <MdOutlineRealEstateAgent className="mr-2 h-8 w-8 text-secondary " />
+                <MdOutlineRealEstateAgent className="mr-2 h-8 w-8 text-mode-text dark:text-secondary " />
                 <span className="text-lg font-semibold text-gray-700 dark:text-gray-300">
                   <span className="font-mono text-4xl">Adobe</span>{' '}
-                  <span className="text-secondary">Finder</span>
+                  <span className="text-mode-text dark:text-secondary">
+                    Finder
+                  </span>
                 </span>
               </Link>
             </div>
@@ -58,7 +60,7 @@ const NavBar: FC = () => {
             </SignedIn>
             <SignedOut>
               <SignInButton mode="modal">
-                <button className='dark:text-primary"> rounded-full border border-gray-400 px-4 py-1 font-semibold hover:border-none hover:bg-secondary hover:text-white dark:border-none dark:bg-secondary'>
+                <button className="rounded-full border border-gray-400 px-4 py-1 font-semibold hover:border-none hover:bg-secondary hover:text-white dark:border-none dark:bg-secondary dark:text-primary">
                   Sign in
                 </button>
               </SignInButton>

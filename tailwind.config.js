@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('tailwindcss').Config} */
-const colors = require('tailwindcss/colors');
-import plugin from '@tailwindcss/typography';
 
 module.exports = {
   content: [
@@ -26,6 +24,7 @@ module.exports = {
         mode: {
           light: '#ffff', // light mode background color
           dark: '#111827', // dark mode background color
+          text: '#374955',
         },
 
         error: {
@@ -59,27 +58,12 @@ module.exports = {
           '100%': { transform: 'translate(0, 0)', opacity: 1 },
         },
       },
-      gray: colors.zinc,
     },
   },
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/forms'),
-    require('prettier-plugin-tailwindcss'),
-    plugin(({ matchUtilities, theme }) => {
-      matchUtilities(
-        {
-          'animation-delay': (value) => {
-            return {
-              'animation-delay': value,
-            };
-          },
-        },
-        {
-          values: theme('transitionDelay'),
-        }
-      );
-    }),
+    // require('prettier-plugin-tailwindcss'),
   ],
 };

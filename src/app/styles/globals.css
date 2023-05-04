@@ -9,6 +9,10 @@ main {
 .dark-mode {
   @apply bg-mode-light text-mode-dark antialiased dark:bg-mode-dark dark:text-mode-light;
 }
+.sidebar-dark-mode {
+  @apply bg-mode-light text-mode-dark antialiased dark:bg-[#151d2f] dark:text-mode-light;
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);
