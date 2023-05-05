@@ -13,7 +13,7 @@ const HeroSection: FC = () => {
           />
         </div>
 
-        <div className="flex flex-col justify-center rounded-sm text-center lg:max-w-md lg:text-left xl:max-w-lg">
+        <div className=" flex flex-col justify-center rounded-sm text-center lg:max-w-md lg:text-left xl:max-w-lg">
           <h1 className="text-5xl font-bold leading-none sm:text-6xl">
             Find Your
             <span className="text-mode-text dark:dark:text-sky-400">
@@ -22,7 +22,7 @@ const HeroSection: FC = () => {
             </span>
             Today
           </h1>
-          <p className="mt-6 text-lg sm:mb-12 md:mb-6">
+          <p className=" mt-6 text-lg sm:mb-12 md:mb-6">
             With Adobe Finder, you can easily search for properties that meet
             your needs and preferences. Whether you're looking for a cozy
             apartment in the city or a spacious house in the suburbs, we've got

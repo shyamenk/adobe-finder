@@ -1,7 +1,10 @@
 'use client';
 import FormInput from '@/components/ui/FormInput';
 import Switch from '@/components/ui/Switch';
+import FileUpload from '@/components/utils/FileUpload';
+import axios from 'axios';
 import React, { useState } from 'react';
+
 interface FormDataProps {
   name: string;
   place: string;
@@ -9,14 +12,12 @@ interface FormDataProps {
   price: number;
   bed: number;
   bathroom: number;
-  [key: string]: string | number;
-}
-interface ToggleState {
   parking: boolean;
   furnished: boolean;
   featured: boolean;
-  [key: string]: boolean;
+  [key: string]: string | number | boolean | File;
 }
+
 const AddListingForm = () => {
   const [formData, setFormdata] = useState<FormDataProps>({
     name: '',
@@ -25,24 +26,54 @@ const AddListingForm = () => {
     price: 0,
     bed: 0,
     bathroom: 0,
-  });
-  const [toggle, setTogglee] = useState<ToggleState>({
     parking: false,
     furnished: false,
     featured: false,
   });
-  const handleSwitchChange = (switchName: string) => {
-    setTogglee({ ...toggle, [switchName]: !toggle[switchName] });
+
+  const [files, setFiles] = useState<File[]>([]);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFiles(Array.from(e.target.files));
+    }
+  };
+  const handleSwitchChange = (switchName: keyof FormDataProps) => {
+    setFormdata({
+      ...formData,
+      [switchName]: !formData[switchName],
+    });
   };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormdata({
       ...formData,
-      [e.target.id]: e.target.value,
+      [e.target.id]:
+        e.target.type === 'number'
+          ? parseFloat(e.target.value)
+          : e.target.value,
     });
   };
-  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const formDataWithFiles = new FormData();
+    Object.entries(formData).forEach(([key, value]) => {
+      formDataWithFiles.append(key, String(value));
+    });
+    files.forEach((file, index) => {
+      formDataWithFiles.append(`file${index}`, file);
+    });
+    try {
+      const { data } = await axios.post(
+        'http://localhost:3000/api/listings/addListings',
+        formDataWithFiles
+      );
+
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
   };
+
   return (
     <section className="h-screen mx-auto max-w-7xl p-6  dark:bg-[#172034]">
       <h1 className="px-6 text-3xl text-mode-text dark:text-secondary">
@@ -109,34 +140,37 @@ const AddListingForm = () => {
                 onChange={handleChange}
               />
             </div>
-            <div className="col-span-1">
+            <div className="col-span-2">
               <label htmlFor="parking" className="text-sm">
                 Parking
               </label>
               <Switch
-                selected={toggle.parking}
+                selected={formData.parking}
                 onChange={() => handleSwitchChange('parking')}
               />
             </div>
-            <div className="col-span-1">
+            <div className="col-span-2">
               <label htmlFor="furnished" className="text-sm">
                 Furnished
               </label>
               <Switch
-                selected={toggle.furnished}
+                selected={formData.furnished}
                 onChange={() => handleSwitchChange('furnished')}
               />
             </div>
-            <div className="col-span-1">
+            <div className="col-span-2">
               <label htmlFor="featured" className="text-sm">
                 Featured
               </label>
               <Switch
-                selected={toggle.featured}
+                selected={formData.featured}
                 onChange={() => handleSwitchChange('featured')}
               />
             </div>
-            <div className="col-span-1">
+            <div className="col-span-full">
+              <FileUpload fileChange={handleFileChange} />
+            </div>
+            <div className="col-span-full">
               <button className="w-full btn-primary mt-6">Submit</button>
             </div>
           </div>
