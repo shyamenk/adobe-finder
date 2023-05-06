@@ -10,30 +10,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id         String     @id @default(auto()) @map("_id") @db.ObjectId
-  name       String
-  email      String     @unique
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
-  properties Property[]
-}
-
 model Property {
-  id             String  @id @default(auto()) @map("_id") @db.ObjectId
-  name           String
-  place          String
-  description    String
-  price          Int
-  beds           Int
-  bath           Boolean
-  parking        Boolean
-  furnished      Boolean
-  offer          Boolean
-  isFeatured     Boolean
-  contactDetails String
-  images         Json[]
-  isFavorite     Boolean
-  user           User?   @relation(fields: [userId], references: [id])
-  userId         String? @db.ObjectId
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  place       String
+  description String
+  price       Int
+  bed         Int
+  bath        Int
+  parking     Boolean
+  furnished   Boolean
+  isFeatured  Boolean
+  imageUrls   String[]
+  userId      String?
 }

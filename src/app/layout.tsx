@@ -2,6 +2,7 @@ import { Providers } from '@/Providers';
 import SiteHeader from '@/components/layout/SiteHeader';
 import SiteFooter from '@/components/layout/SiteFooter';
 import { ClerkProvider } from '@clerk/nextjs/app-beta';
+
 import './styles/globals.css';
 
 export const metadata = {

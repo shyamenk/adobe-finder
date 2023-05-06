@@ -2,8 +2,9 @@
 import FormInput from '@/components/ui/FormInput';
 import Switch from '@/components/ui/Switch';
 import FileUpload from '@/components/utils/FileUpload';
-import axios from 'axios';
 import React, { useState } from 'react';
+import { useAuth } from '@clerk/nextjs';
+import { Property } from '@prisma/client';
 
 interface FormDataProps {
   name: string;
@@ -19,7 +20,9 @@ interface FormDataProps {
 }
 
 const AddListingForm = () => {
-  const [formData, setFormdata] = useState<FormDataProps>({
+  const { userId } = useAuth();
+
+  const initailFormData = {
     name: '',
     place: '',
     description: '',
@@ -29,7 +32,9 @@ const AddListingForm = () => {
     parking: false,
     furnished: false,
     featured: false,
-  });
+  };
+
+  const [formData, setFormdata] = useState<FormDataProps>(initailFormData);
 
   const [files, setFiles] = useState<File[]>([]);
 
@@ -56,19 +61,26 @@ const AddListingForm = () => {
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formDataWithFiles = new FormData();
+    formDataWithFiles.append('userId', userId);
     Object.entries(formData).forEach(([key, value]) => {
-      formDataWithFiles.append(key, String(value));
+      if (typeof value === 'boolean') {
+        formDataWithFiles.append(key, value.toString());
+      } else {
+        formDataWithFiles.append(key, String(value));
+      }
     });
+
     files.forEach((file, index) => {
       formDataWithFiles.append(`file${index}`, file);
     });
     try {
-      const { data } = await axios.post(
-        'http://localhost:3000/api/listings/addListings',
-        formDataWithFiles
-      );
+      const response = await fetch('/api/listings/addListings', {
+        method: 'POST',
+        body: formDataWithFiles,
+      });
 
-      console.log(data);
+      const property = (await response.json()) as Property;
+      console.log(property);
     } catch (error) {
       console.error(error);
     }
