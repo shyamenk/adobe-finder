@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const page = () => {
   return (
@@ -7,11 +7,12 @@ const page = () => {
         <h1 className="mb-3 text-2xl font-semibold">Welcome to Adobe Finder</h1>
         <div className="flex items-center gap-2">
           <span className="text-2xl">👈🏼</span>
+
           <span>Select Service</span>
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default page;
+export default page

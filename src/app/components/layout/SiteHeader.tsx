@@ -1,7 +1,7 @@
 'use client';
 import { FC } from 'react';
 import { useState } from 'react';
-import ThemeButton from '@/utils/ThemeChanger';
+import ThemeButton from '@/components/ui/ThemeChanger';
 import Link from 'next/link';
 import { SignInButton, UserButton } from '@clerk/nextjs';
 import { SignedIn, SignedOut } from '@clerk/nextjs/app-beta/client';

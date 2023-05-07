@@ -1,14 +1,13 @@
-import { prisma } from '@/utils/prisma';
-import { supabase } from '@/utils/supaBase';
+import { prisma } from '@/config/prisma'
+import { supabase } from '@/config/supaBase'
 
-import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server'
 
 type FormFields = {
-  [key: string]: string | boolean | File;
-};
+  [key: string]: string | boolean | File
+}
 export async function POST(req: Request) {
-  const formData = await req.formData();
-
+  const formData = await req.formData()
   const {
     name,
     place,
@@ -20,33 +19,33 @@ export async function POST(req: Request) {
     furnished,
     featured,
     userId,
-  } = Object.fromEntries(formData.entries());
+  } = Object.fromEntries(formData.entries())
 
-  const files: FormFields = {};
+  const files: FormFields = {}
 
-  const imageUrls = [];
+  const imageUrls = []
   for (const entry of formData.entries()) {
-    const [key, value] = entry;
+    const [key, value] = entry
 
     if (value instanceof Blob) {
-      files[key] = value;
+      files[key] = value
       const fileId = `${Date.now()}-${Math.random()
         .toString(36)
-        .substring(2, 10)}`;
+        .substring(2, 10)}`
       const { data, error } = await supabase.storage
         .from('photos')
-        .upload(`images/${fileId}`, value);
+        .upload(`images/${fileId}`, value)
       if (error) {
-        console.error('Error uploading image:', error);
+        console.error('Error uploading image:', error)
       } else {
         const {
           data: { publicUrl },
         }: { data: { publicUrl: string } } = await supabase.storage
           .from('photos')
-          .getPublicUrl(data.path);
+          .getPublicUrl(data.path)
 
-        imageUrls.push(publicUrl);
-        console.log('Image uploaded:', publicUrl);
+        imageUrls.push(publicUrl)
+        console.log('Image uploaded:', publicUrl)
       }
     }
   }
@@ -65,7 +64,7 @@ export async function POST(req: Request) {
       imageUrls: imageUrls.map((url) => url),
       userId: String(userId),
     },
-  });
+  })
 
-  return NextResponse.json({ property });
+  return NextResponse.json({ property })
 }

@@ -1,5 +1,5 @@
-import CustomImage from '@/components/utils/CustomImage';
-import { FC } from 'react';
+import CustomImage from '@/components/utils/CustomImage'
+import { FC } from 'react'
 const HeroSection: FC = () => {
   return (
     <section className="bg-mode-light  text-mode-dark dark:bg-mode-dark dark:text-mode-light">
@@ -24,9 +24,9 @@ const HeroSection: FC = () => {
           </h1>
           <p className=" mt-6 text-lg sm:mb-12 md:mb-6">
             With Adobe Finder, you can easily search for properties that meet
-            your needs and preferences. Whether you're looking for a cozy
-            apartment in the city or a spacious house in the suburbs, we've got
-            you covered.
+            your needs and preferences. Whether you&apos;re looking for a cozy
+            apartment in the city or a spacious house in the suburbs, we&apos;ve
+            got you covered.
           </p>
           <div className="flex flex-col space-y-2 sm:flex-row sm:items-center sm:justify-center sm:space-x-4 sm:space-y-0 lg:justify-start">
             <a
@@ -40,7 +40,7 @@ const HeroSection: FC = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default HeroSection;
+export default HeroSection

@@ -1,8 +1,8 @@
-import AddListingForm from '@/components/listings/AddListingForm';
-import React from 'react';
+import AddListingForm from '@/components/listings/AddListingForm'
+import React from 'react'
 
 const AddListing = () => {
-  return <AddListingForm />;
-};
+  return <AddListingForm />
+}
 
-export default AddListing;
+export default AddListing
