@@ -1,9 +1,9 @@
-import SideBar from '@/components/layout/SideBar';
-import { ReactNode } from 'react';
+import SideBar from '@/components/layout/SideBar'
+import { ReactNode } from 'react'
 
 type Props = {
-  children: ReactNode;
-};
+  children: ReactNode
+}
 
 const ListingLayout = ({ children }: Props) => {
   return (
@@ -13,7 +13,7 @@ const ListingLayout = ({ children }: Props) => {
       </aside>
       <main>{children}</main>
     </section>
-  );
-};
+  )
+}
 
-export default ListingLayout;
+export default ListingLayout

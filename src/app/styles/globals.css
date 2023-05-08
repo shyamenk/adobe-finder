@@ -34,4 +34,13 @@ main {
   .btn-secondary {
     @apply rounded-full bg-blue-950 px-4 py-2 font-semibold text-white shadow-md hover:bg-sky-600 dark:bg-sky-600 dark:text-white dark:hover:bg-sky-500 dark:focus:outline-none dark:focus:ring-2 dark:focus:ring-sky-400 dark:focus:ring-opacity-75;
   }
+  .no-spinner {
+    -moz-appearance: textfield;
+  }
+
+  .no-spinner::-webkit-outer-spin-button,
+  .no-spinner::-webkit-inner-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+  }
 }

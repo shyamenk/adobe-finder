@@ -1,19 +1,19 @@
-import { Providers } from '@/Providers';
-import SiteHeader from '@/components/layout/SiteHeader';
-import SiteFooter from '@/components/layout/SiteFooter';
-import { ClerkProvider } from '@clerk/nextjs/app-beta';
+import { Providers } from '@/Providers'
+import SiteHeader from '@/components/layout/SiteHeader'
+import SiteFooter from '@/components/layout/SiteFooter'
+import { ClerkProvider } from '@clerk/nextjs/app-beta'
 
-import './styles/globals.css';
+import './styles/globals.css'
 
 export const metadata = {
   title: 'AdobeFinder | Discover Your Dream Home',
   description: 'The Ultimate Destination for Property Hunting',
-};
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html
@@ -31,5 +31,5 @@ export default function RootLayout({
         </ClerkProvider>
       </body>
     </html>
-  );
+  )
 }

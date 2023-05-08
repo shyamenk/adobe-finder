@@ -1,26 +1,26 @@
-'use client';
-import FormInput from '@/components/ui/FormInput';
-import Switch from '@/components/ui/Switch';
-import FileUpload from '@/components/utils/FileUpload';
-import React, { useState } from 'react';
-import { useAuth } from '@clerk/nextjs';
-import { Property } from '@prisma/client';
+'use client'
+import FormInput from '@/components/ui/FormInput'
+import Switch from '@/components/ui/Switch'
+import FileUpload from '@/components/utils/FileUpload'
+import React, { useState } from 'react'
+import { useAuth } from '@clerk/nextjs'
+import { Property } from '@prisma/client'
 
 interface FormDataProps {
-  name: string;
-  place: string;
-  description: string;
-  price: number;
-  bed: number;
-  bathroom: number;
-  parking: boolean;
-  furnished: boolean;
-  featured: boolean;
-  [key: string]: string | number | boolean | File;
+  name: string
+  place: string
+  description: string
+  price: number
+  bed: number
+  bathroom: number
+  parking: boolean
+  furnished: boolean
+  featured: boolean
+  [key: string]: string | number | boolean | File
 }
 
 const AddListingForm = () => {
-  const { userId } = useAuth();
+  const { userId } = useAuth()
 
   const initailFormData = {
     name: '',
@@ -32,23 +32,23 @@ const AddListingForm = () => {
     parking: false,
     furnished: false,
     featured: false,
-  };
+  }
 
-  const [formData, setFormdata] = useState<FormDataProps>(initailFormData);
+  const [formData, setFormdata] = useState<FormDataProps>(initailFormData)
 
-  const [files, setFiles] = useState<File[]>([]);
+  const [files, setFiles] = useState<File[]>([])
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setFiles(Array.from(e.target.files));
+      setFiles(Array.from(e.target.files))
     }
-  };
+  }
   const handleSwitchChange = (switchName: keyof FormDataProps) => {
     setFormdata({
       ...formData,
       [switchName]: !formData[switchName],
-    });
-  };
+    })
+  }
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormdata({
       ...formData,
@@ -56,35 +56,35 @@ const AddListingForm = () => {
         e.target.type === 'number'
           ? parseFloat(e.target.value)
           : e.target.value,
-    });
-  };
+    })
+  }
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formDataWithFiles = new FormData();
-    formDataWithFiles.append('userId', userId);
+    e.preventDefault()
+    const formDataWithFiles = new FormData()
+    formDataWithFiles.append('userId', userId as string)
     Object.entries(formData).forEach(([key, value]) => {
       if (typeof value === 'boolean') {
-        formDataWithFiles.append(key, value.toString());
+        formDataWithFiles.append(key, value.toString())
       } else {
-        formDataWithFiles.append(key, String(value));
+        formDataWithFiles.append(key, String(value))
       }
-    });
+    })
 
     files.forEach((file, index) => {
-      formDataWithFiles.append(`file${index}`, file);
-    });
+      formDataWithFiles.append(`file${index}`, file)
+    })
     try {
       const response = await fetch('/api/listings/addListings', {
         method: 'POST',
         body: formDataWithFiles,
-      });
+      })
 
-      const property = (await response.json()) as Property;
-      console.log(property);
+      const property = (await response.json()) as Property
+      console.log(property)
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
-  };
+  }
 
   return (
     <section className="h-screen mx-auto max-w-7xl p-6  dark:bg-[#172034]">
@@ -189,7 +189,7 @@ const AddListingForm = () => {
         </fieldset>
       </form>
     </section>
-  );
-};
+  )
+}
 
-export default AddListingForm;
+export default AddListingForm

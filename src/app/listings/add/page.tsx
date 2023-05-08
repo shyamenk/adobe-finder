@@ -1,4 +1,4 @@
-import AddListingForm from '@/components/listings/AddListingForm'
+import AddListingForm from '@/components/listings/AddPropertyForm'
 import React from 'react'
 
 const AddListing = () => {
