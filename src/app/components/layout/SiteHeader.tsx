@@ -1,29 +1,28 @@
-'use client';
-import { FC } from 'react';
-import { useState } from 'react';
-import ThemeButton from '@/components/ui/ThemeChanger';
-import Link from 'next/link';
-import { SignInButton, UserButton } from '@clerk/nextjs';
-import { SignedIn, SignedOut } from '@clerk/nextjs/app-beta/client';
-
-import { MdOutlineRealEstateAgent } from 'react-icons/md';
-import { RxHamburgerMenu } from 'react-icons/rx';
-import { AiOutlineClose } from 'react-icons/ai';
-// import { FaUserCircle } from 'react-icons/fa';
+'use client'
+import { FC } from 'react'
+import { useState } from 'react'
+import ThemeButton from '@/components/ui/ThemeChanger'
+import Link from 'next/link'
+import { SignInButton, UserButton } from '@clerk/nextjs'
+import { SignedIn, SignedOut } from '@clerk/nextjs/app-beta/client'
+import { MdOutlineRealEstateAgent } from 'react-icons/md'
+import { RxHamburgerMenu } from 'react-icons/rx'
+import { AiOutlineClose } from 'react-icons/ai'
+import NavLink from '@/components/ui/NavLink'
 
 const NavBar: FC = () => {
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false)
 
   const navigation = [
-    { id: 1, name: 'Home', link: '/' },
-    { id: 2, name: 'Listing', link: '/listings' },
-    { id: 3, name: 'Search', link: '/search' },
-    { id: 4, name: 'Favourite', link: '/favourites' },
-    { id: 5, name: 'About', link: '/about' },
-  ];
+    { id: 1, name: 'Home', href: '/' },
+    { id: 2, name: 'Listing', href: '/listings' },
+    { id: 3, name: 'Search', href: '/search' },
+    { id: 4, name: 'Favourite', href: '/favourites' },
+    { id: 5, name: 'About', href: '/about' },
+  ]
 
   return (
-    <nav className="sticky top-0 z-50 bg-mode-light bg-white bg-opacity-95 py-2 text-mode-dark shadow-lg dark:bg-mode-dark dark:bg-opacity-95 dark:text-mode-light">
+    <nav className="sticky top-0 z-50  py-2 shadow-lg bg-slate-100 dark:bg-[#0a0f1c]">
       <div className="mx-auto max-w-6xl px-4">
         <div className="flex justify-between">
           <div className="flex space-x-10">
@@ -32,24 +31,22 @@ const NavBar: FC = () => {
                 href="/"
                 className="flex items-center justify-between px-2 py-4"
               >
-                <MdOutlineRealEstateAgent className="mr-2 h-8 w-8 text-mode-text dark:text-secondary " />
-                <span className="text-lg font-semibold text-gray-700 dark:text-gray-300">
-                  <span className="font-mono text-4xl">Adobe</span>{' '}
-                  <span className="text-mode-text dark:text-secondary">
-                    Finder
-                  </span>
+                <MdOutlineRealEstateAgent className="mr-2 h-8 w-8" />
+                <span className="text-lg font-semibold">
+                  <span className="font-mono text-4xl text-sky-500">Adobe</span>{' '}
+                  <span>Finder</span>
                 </span>
               </Link>
             </div>
             <div className="hidden items-center space-x-6 md:flex">
               {navigation.map((navLink) => (
-                <Link
+                <NavLink
                   key={navLink.id}
-                  href={navLink.link}
+                  href={navLink.href}
                   className="py-1 font-semibold "
                 >
                   {navLink.name}
-                </Link>
+                </NavLink>
               ))}
             </div>
           </div>
@@ -88,13 +85,13 @@ const NavBar: FC = () => {
                 key={navLink.id}
                 className=" text-md block  py-2 font-semibold"
               >
-                <Link href={navLink.link}>{navLink.name}</Link>
+                <Link href={navLink.href}>{navLink.name}</Link>
               </li>
             ))}
           </ul>
         </div>
       )}
     </nav>
-  );
-};
-export default NavBar;
+  )
+}
+export default NavBar

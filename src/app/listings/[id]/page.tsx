@@ -7,6 +7,8 @@ interface Props {
   }
 }
 
+// const timer = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
+
 const getPropertById = async (id: string) => {
   const data = await prisma.property.findUnique({
     where: {
@@ -16,6 +18,7 @@ const getPropertById = async (id: string) => {
   return data
 }
 const PropertyPage = async ({ params }: Props) => {
+  // await timer(2000)
   const property = await getPropertById(params.id)
 
   return (

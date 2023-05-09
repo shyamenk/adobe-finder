@@ -1,69 +1,77 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('tailwindcss').Config} */
-
 module.exports = {
+  darkMode: ['class'],
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './src/app/**/*.{ts,tsx}',
   ],
-  darkMode: 'class',
   theme: {
+    container: {
+      center: true,
+      // padding: '2rem',
+    },
     extend: {
       colors: {
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
         primary: {
-          DEFAULT: '#05112e', // primary color
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
         },
         secondary: {
-          DEFAULT: '#38bdf8', // secondary color
-          light: '#39b5ff',
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))',
+        },
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
         },
         accent: {
-          DEFAULT: '#fbfbfb', // accent color
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
         },
-        mode: {
-          light: '#ffff', // light mode background color
-          dark: '#111827', // dark mode background color
-          text: '#374955',
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))',
         },
-
-        error: {
-          DEFAULT: '#ff0000', // error color
+        card: {
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))',
         },
-        link: {
-          DEFAULT: '#007aff', // link color
+      },
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
+      },
+      keyframes: {
+        'accordion-down': {
+          from: { height: 0 },
+          to: { height: 'var(--radix-accordion-content-height)' },
         },
-        heading: {
-          DEFAULT: '#333', // default text color
-          h1: '#444', // color for h1 headings
-          h2: '#555', // color for h2 headings
-          h3: '#666', // color for h3 headings
-          p: '#868686', // color for paragraph
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: 0 },
         },
       },
       animation: {
-        'spin-slow': 'spin 3s linear infinite',
-        'fade-in':
-          'opacity: 0; animation: fadeIn ease-in 1; animation-fill-mode: forwards; animation-duration: 0.5s;',
-        'slide-up':
-          'transition: transform 0.5s ease-out; transform: translate(0, 20px); opacity: 0; animation: slideUp 0.5s ease-in-out;',
-      },
-      keyframes: {
-        fadeIn: {
-          '0%': { opacity: 0 },
-          '100%': { opacity: 1 },
-        },
-        slideUp: {
-          '0%': { transform: 'translate(0, 20px)', opacity: 0 },
-          '100%': { transform: 'translate(0, 0)', opacity: 1 },
-        },
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
       },
     },
   },
   plugins: [
-    require('@tailwindcss/typography'),
+    require('tailwindcss-animate'),
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/forms'),
-    // require('prettier-plugin-tailwindcss'),
+    require('@tailwindcss/typography'),
   ],
-};
+}

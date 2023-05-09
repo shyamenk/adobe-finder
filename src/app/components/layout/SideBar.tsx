@@ -1,79 +1,76 @@
-'use client';
+'use client'
 
-import Link from 'next/link';
-import { BsFillHouseAddFill, BsViewStacked } from 'react-icons/bs';
-// import { AiFillSetting } from 'react-icons/ai';
-// import { BiHelpCircle } from 'react-icons/bi';
+import React, { useState } from 'react'
+import Link from 'next/link'
+import { MdOutlineDashboard } from 'react-icons/md'
+import { RiSettings4Line } from 'react-icons/ri'
+import { TbReportAnalytics } from 'react-icons/tb'
+import { AiOutlineUser, AiOutlineHeart } from 'react-icons/ai'
+import { FiMessageSquare, FiFolder, FiShoppingCart } from 'react-icons/fi'
+import { RxChevronLeft } from 'react-icons/rx'
 
 const Sidebar = () => {
-  const navigation = [
-    {
-      href: '/listings/add',
-      name: 'Add Property',
-      icon: <BsFillHouseAddFill />,
-    },
-    {
-      href: '#',
-      name: 'View Property',
-      icon: <BsViewStacked />,
-    },
-  ];
-
-  // const navsFooter = [
-  //   {
-  //     href: '#',
-  //     name: 'Help',
-  //     icon: <BiHelpCircle />,
-  //   },
-  //   {
-  //     href: '#',
-  //     name: 'Settings',
-  //     icon: <AiFillSetting />,
-  //   },
-  // ];
-
+  const menus = [
+    { name: 'Add Property', link: '/listings/add', icon: MdOutlineDashboard },
+    { name: 'user', link: '/', icon: AiOutlineUser },
+    { name: 'messages', link: '/', icon: FiMessageSquare },
+    { name: 'analytics', link: '/', icon: TbReportAnalytics, margin: true },
+    { name: 'File Manager', link: '/', icon: FiFolder },
+    { name: 'Cart', link: '/', icon: FiShoppingCart },
+    { name: 'Saved', link: '/', icon: AiOutlineHeart, margin: true },
+    { name: 'Setting', link: '/', icon: RiSettings4Line },
+  ]
+  const [open, setOpen] = useState(true)
   return (
-    <>
-      <nav className="h-screen sidebar-dark-mode shadow-lg sm:w-80 divide-x-2 ">
-        <div className="flex  flex-col px-4">
-          <div className="overflow-auto">
-            <h1 className="py-4 text-3xl font-semibold text-[#374955] dark:text-secondary ">
-              Dashboard
-            </h1>
-            <ul className="text-md flex-1 font-medium">
-              {navigation.map((item, idx) => (
-                <li key={idx}>
-                  <Link
-                    href={item.href}
-                    className="flex items-center  gap-x-2 rounded-lg p-2  text-mode-dark duration-150 dark:text-mode-light"
-                  >
-                    <div className="text-gray-500">{item.icon}</div>
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-              <li></li>
-            </ul>
-            <div className="mt-2 border-t pt-2">
-              {/* <ul className="text-sm font-medium">
-                {navsFooter.map((item, idx) => (
-                  <li key={idx}>
-                    <Link
-                      href={item.href}
-                      className="flex items-center gap-x-2 rounded-lg p-2 text-gray-100  duration-150"
-                    >
-                      <div className="text-gray-500">{item.icon}</div>
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul> */}
-            </div>
-          </div>
+    <section className="flex gap-6">
+      <div
+        className={`min-h-screen bg-gray-200 ${
+          open ? 'w-72' : 'w-16'
+        } duration-500  px-4`}
+      >
+        <div className="py-3 flex justify-end">
+          <RxChevronLeft
+            size={26}
+            // className="cursor-pointer"
+            className={` cursor-pointer right-3 top-9 w-7  rounded-full  ${
+              !open && 'rotate-180'
+            }`}
+            onClick={() => setOpen(!open)}
+          />
         </div>
-      </nav>
-    </>
-  );
-};
+        <div className="mt-4 flex flex-col gap-4 relative">
+          {menus?.map((menu, i) => (
+            <Link
+              href={menu.link}
+              key={i}
+              className={` ${
+                menu?.margin && 'mt-5'
+              } group flex items-center text-sm  gap-3.5 font-medium p-2 rounded-md`}
+            >
+              <div>{React.createElement(menu?.icon, { size: '20' })}</div>
+              <h2
+                style={{
+                  transitionDelay: `${i + 3}00ms`,
+                }}
+                className={`whitespace-pre duration-500 ${
+                  !open && 'opacity-0 translate-x-28 overflow-hidden'
+                }`}
+              >
+                {menu?.name}
+              </h2>
+              <h2
+                className={`${
+                  open && 'hidden'
+                } absolute left-48 font-semibold whitespace-pre rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
+              >
+                {menu?.name}
+              </h2>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
 
-export default Sidebar;
+export default Sidebar

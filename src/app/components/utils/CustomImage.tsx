@@ -24,7 +24,7 @@ const CustomImage = ({ src, alt, width, height }: ImageProps) => {
       loading="lazy"
       blurDataURL={src}
       className={cn(
-        'duration-700 ease-in-out rounded-lg ',
+        'duration-700 ease-in-out rounded-t-md ',
         isLoading
           ? 'scale-110 blur-2xl grayscale'
           : 'scale-100 blur-0 grayscale-0'

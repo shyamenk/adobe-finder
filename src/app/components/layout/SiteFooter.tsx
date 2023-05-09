@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
 const SiteFooter = () => {
   return (
-    <footer className=" px-4 py-8 shadow-xl dark:bg-mode-dark dark:bg-opacity-95 dark:text-mode-light ">
+    <footer className=" px-4 py-8 shadow-xl  bg-slate-100 dark:bg-[#0a0f1c]">
       <div className="container mx-auto flex flex-wrap items-center justify-center space-y-4 sm:justify-between sm:space-y-0">
         <div className="flex flex-row space-x-4 pr-3 sm:space-x-8">
           <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full dark:dark:bg-sky-400">
@@ -47,7 +47,7 @@ const SiteFooter = () => {
         </ul>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default SiteFooter;
+export default SiteFooter

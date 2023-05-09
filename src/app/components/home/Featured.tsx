@@ -11,7 +11,7 @@ const Featured: FC<FeaturedProps> = ({ property }: FeaturedProps) => {
   return (
     <div className="container mx-auto px-6 md:px-10 mb-10">
       <div className="mb-8">
-        <h2 className="mb-4  font-bold text-gray-800 dark:text-white md:text-4xl">
+        <h2 className="mb-4  font-bold md:text-4xl">
           <span className="text-mode-text text-4xl">Featured</span> Properties
         </h2>
       </div>

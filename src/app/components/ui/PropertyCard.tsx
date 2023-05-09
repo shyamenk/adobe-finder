@@ -4,25 +4,35 @@ import { formatCurrencyINR } from '@/utils/formatCurrencyINR'
 import { FaBath, FaBed, FaCar } from 'react-icons/fa'
 import { MdWeekend } from 'react-icons/md'
 
-const BedIcon = () => <FaBed className="text-secondary hover:text-white" />
-const BathIcon = () => <FaBath className="text-secondary hover:text-white" />
-const ParkingIcon = () => <FaCar className="text-secondary hover:text-white" />
+const BedIcon = () => (
+  <FaBed className="text-sky-500 hover:text-sky-600 w-6 h-6" />
+)
+const BathIcon = () => (
+  <FaBath className="text-sky-500 hover:text-sky-600w-6 h-6" />
+)
+const ParkingIcon = () => (
+  <FaCar className="text-sky-500 hover:text-sky-600 w-6 h-6" />
+)
 const FurnishedIcon = () => (
-  <MdWeekend className="text-secondary hover:text-white" />
+  <MdWeekend className="text-sky-500 hover:text-sky-600 w-6 h-6" />
 )
 
 import { Property } from '@prisma/client'
 import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 interface PropertyCardProps {
   property: Property
 }
 
 const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
   return (
-    <div className="relative bg-white dark:bg-gray-800 max-w-md rounded-lg overflow-hidden shadow-lg mx-auto border">
-      <span className=" absolute -top-3 -left-3 inline-flex mt-3 ml-3 px-3 py-2 rounded-lg z-10 bg-secondary text-sm font-medium text-white select-none">
+    <div className="relative  max-w-md rounded-lg overflow-hidden shadow-lg mx-auto border">
+      <Button
+        variant={'secondary'}
+        className=" absolute top-0 -left-0 inline-flex mt-3 ml-3 px-4  rounded-lg z-10 text-sm font-medium select-none"
+      >
         Featured
-      </span>
+      </Button>
       <Link href={`/listings/${property.id}`}>
         <CustomImage
           src={property.imageUrls[4]}
@@ -31,12 +41,8 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
           height={280}
         />
         <div className="p-4">
-          <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
-            {property.name}
-          </h3>
-          <p className="text-gray-600 dark:text-gray-400 mt-2 line-clamp-2">
-            {property.description}
-          </p>
+          <h3 className="text-xl font-semibold">{property.name}</h3>
+          <p className=" mt-2 line-clamp-2">{property.description}</p>
           <div className="md:flex md:items-center md:space-x-4 mb-2 mt-2">
             <BedIcon />
             <span>
@@ -60,7 +66,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
             )}
           </div>
           <div className="mt-2">
-            <span className="text-2xl font-bold text-gray-900 dark:text-white">
+            <span className="text-2xl font-bold">
               {formatCurrencyINR(property.price)}
             </span>
             <span className="text-gray-600 dark:text-gray-400 ml-2">

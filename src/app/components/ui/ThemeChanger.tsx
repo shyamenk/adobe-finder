@@ -1,20 +1,20 @@
-import { FC, useLayoutEffect, useState } from 'react';
-import { useTheme } from 'next-themes';
-import { HiOutlineSun, HiMoon } from 'react-icons/hi';
+import { FC, useLayoutEffect, useState } from 'react'
+import { useTheme } from 'next-themes'
+import { HiOutlineSun, HiMoon } from 'react-icons/hi'
 
 const ThemeButton: FC = () => {
-  const { resolvedTheme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme()
 
   const handleToggleTheme = () => {
-    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
-  };
+    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
+  }
 
   const iconProps: React.SVGProps<SVGSVGElement> = {
-    className: 'w-5 h-5 dark:text-secondary text-primary',
-  };
+    className: 'w-5 h-5',
+  }
 
   if (resolvedTheme === 'dark') {
-    iconProps.className += ' hover:animate-spin-slow';
+    iconProps.className += ' hover:animate-spin-slow'
   }
 
   return (
@@ -30,17 +30,17 @@ const ThemeButton: FC = () => {
         <HiMoon {...iconProps} />
       )}
     </button>
-  );
-};
+  )
+}
 
 const ThemeToggleButton: FC = () => {
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(false)
 
   useLayoutEffect(() => {
-    setMounted(true);
-  }, []);
+    setMounted(true)
+  }, [])
 
-  return mounted ? <ThemeButton /> : null;
-};
+  return mounted ? <ThemeButton /> : null
+}
 
-export default ThemeToggleButton;
+export default ThemeToggleButton
