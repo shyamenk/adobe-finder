@@ -2,7 +2,7 @@ import React from 'react'
 
 const SiteFooter = () => {
   return (
-    <footer className=" px-4 py-8 shadow-xl  bg-slate-100 dark:bg-[#0a0f1c]">
+    <footer className="px-4 py-8  drop-shadow-2xl shadow-top bg-slate-200 dark:bg-slate-900 overflow-auto">
       <div className="container mx-auto flex flex-wrap items-center justify-center space-y-4 sm:justify-between sm:space-y-0">
         <div className="flex flex-row space-x-4 pr-3 sm:space-x-8">
           <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full dark:dark:bg-sky-400">

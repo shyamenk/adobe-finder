@@ -1,17 +1,17 @@
 'use client'
 import ImageCarousel from '@/components/ui/Carousal'
+import { Button } from '@/components/ui/button'
 import { formatCurrencyINR } from '@/utils/formatCurrencyINR'
 import { Property } from '@prisma/client'
 import Link from 'next/link'
+import { AiFillStar } from 'react-icons/ai'
 import { FaBath, FaBed, FaCar } from 'react-icons/fa'
 import { MdWeekend } from 'react-icons/md'
 
-const BedIcon = () => <FaBed className="text-secondary hover:text-white" />
-const BathIcon = () => <FaBath className="text-secondary hover:text-white" />
-const ParkingIcon = () => <FaCar className="text-secondary hover:text-white" />
-const FurnishedIcon = () => (
-  <MdWeekend className="text-secondary hover:text-white" />
-)
+const BedIcon = () => <FaBed className="w-6 h-6 text-tertiary" />
+const BathIcon = () => <FaBath className="w-6 h-6 text-tertiary " />
+const ParkingIcon = () => <FaCar className="w-6 h-6 text-tertiary " />
+const FurnishedIcon = () => <MdWeekend className="w-6 h-6 text-tertiary" />
 
 interface PropertyDetailsProps {
   property: Property | null
@@ -19,9 +19,9 @@ interface PropertyDetailsProps {
 
 const PropertyDetails = ({ property }: PropertyDetailsProps) => {
   return (
-    <section className="py-4">
+    <section className="py-4 px-4">
       <nav aria-label="breadcrumb" className="px-4">
-        <ol className="flex h-8 space-x-2 dark:text-gray-100">
+        <ol className="flex h-8 space-x-2">
           <li className="flex items-center">
             <Link
               href="/"
@@ -50,19 +50,18 @@ const PropertyDetails = ({ property }: PropertyDetailsProps) => {
         </ol>
       </nav>
       <div className="relative mx-auto max-w-screen-xl px-4 py-2">
-        <h1 className="py-4 text-3xl text-gray-600 font-semibold">
-          Propery Details
-        </h1>
+        <h1 className="py-4 text-3xl font-semibold">Propery Details</h1>
 
-        <div className="grid grid-cols-1 items-start gap-8 sm:grid-span-1  md:grid-cols-2">
-          <div className="grid  gap-4 md:grid-cols-1 border p-2">
+        <div className="grid grid-cols-1 items-start gap-8 sm:grid-span-1 md:grid-cols-2">
+          <div className="grid  gap-4 md:grid-cols-1  rounded">
             <ImageCarousel
               slides={property?.imageUrls || []}
               autoSlideInterval={2000}
+              // autoSlide=
             />
           </div>
           <div className="sticky top-0">
-            <strong className="rounded-full border border-blue-600 bg-gray-100 px-3 py-0.5 text-xs font-medium tracking-wide text-blue-600">
+            <strong className="rounded-full border px-3 py-1 text-xs font-medium tracking-wide text-sky-500">
               {property?.isFeatured ? 'Featured' : ''}
             </strong>
 
@@ -74,51 +73,12 @@ const PropertyDetails = ({ property }: PropertyDetailsProps) => {
 
                 <p className="text-sm">Highest Rated Product</p>
 
-                <div className="-ms-0.5 flex">
-                  <svg
-                    className="h-5 w-5 text-secondary"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-
-                  <svg
-                    className="h-5 w-5 text-secondary"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-
-                  <svg
-                    className="h-5 w-5 text-secondary"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-
-                  <svg
-                    className="h-5 w-5 text-secondary"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-
-                  <svg
-                    className="h-5 w-5 text-gray-200"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
+                <div className="-ms-0.5 flex text-secondary">
+                  <AiFillStar className="w-6 h-6 text-gray-800 dark:text-sky-500 " />
+                  <AiFillStar className="w-6 h-6 text-gray-800  dark:text-sky-500" />
+                  <AiFillStar className="w-6 h-6 text-gray-800  dark:text-sky-500" />
+                  <AiFillStar className="w-6 h-6 text-gray-500  dark:text-sky-500" />
+                  <AiFillStar className="w-6 h-6 text-gray-500 dark:text-secondary" />
                 </div>
               </div>
 
@@ -128,7 +88,7 @@ const PropertyDetails = ({ property }: PropertyDetailsProps) => {
             </div>
 
             <div className="mt-2">
-              <div className="prose max-w-none">
+              <div className="prose max-w-none text-primary">
                 <p>{property?.description}</p>
               </div>
             </div>
@@ -165,12 +125,13 @@ const PropertyDetails = ({ property }: PropertyDetailsProps) => {
               </fieldset>
 
               <div className="mt-8 flex gap-4">
-                <button
+                <Button
                   type="submit"
-                  className="block rounded bg-secondary px-8 py-2 text-md font-medium text-white hover:bg-secondary-light"
+                  variant={'outline'}
+                  className="block rounded bg-tertiary px-8 py-2 text-md font-medium"
                 >
                   Contact
-                </button>
+                </Button>
               </div>
             </form>
           </div>

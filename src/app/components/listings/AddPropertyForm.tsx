@@ -1,10 +1,12 @@
 'use client'
-import FormInput from '@/components/ui/FormInput'
 import Switch from '@/components/ui/Switch'
 import FileUpload from '@/components/utils/FileUpload'
 import React, { useState } from 'react'
 import { useAuth } from '@clerk/nextjs'
 import { Property } from '@prisma/client'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 
 interface FormDataProps {
   name: string
@@ -87,10 +89,8 @@ const AddListingForm = () => {
   }
 
   return (
-    <section className="h-screen mx-auto max-w-7xl p-6  dark:bg-[#172034]">
-      <h1 className="px-6 text-3xl text-mode-text dark:text-secondary">
-        Add Listings
-      </h1>
+    <section className="md:mx-auto w-full sm:p-6 pb-18  ">
+      <h1 className="px-6 text-3xl">Add Listings</h1>
       <form
         onSubmit={submitHandler}
         className="ng-untouched ng-pristine ng-valid container mx-auto flex flex-col space-y-28 overflow-hidden grow"
@@ -98,82 +98,81 @@ const AddListingForm = () => {
         <fieldset className="grid grid-cols-4 gap-6 rounded-md p-6 shadow-sm">
           <div className="col-span-full grid grid-cols-6 gap-4 lg:col-span-3">
             <div className="col-span-full sm:col-span-3">
-              <FormInput
+              <Label htmlFor="name">Name</Label>
+              <Input
                 type="text"
                 id="name"
-                label="Name"
                 value={formData.name}
                 onChange={handleChange}
               />
             </div>
             <div className="col-span-full sm:col-span-3">
-              <FormInput
+              <Label htmlFor="place">Place</Label>
+              <Input
                 type="text"
                 id="place"
-                label="Place"
                 value={formData.place}
                 onChange={handleChange}
               />
             </div>
             <div className="col-span-full">
-              <FormInput
+              <Label htmlFor="description">Description</Label>
+              <Input
                 type="text"
                 id="description"
-                label="Description"
                 value={formData.description}
                 onChange={handleChange}
               />
             </div>
             <div className="col-span-full sm:col-span-2">
-              <FormInput
+              <Label htmlFor="price">Price</Label>
+              <Input
                 type="number"
                 id="price"
-                label="Price"
                 value={formData.price.toString()}
                 onChange={handleChange}
+                placeholder="Price"
               />
             </div>
             <div className="col-span-full sm:col-span-2">
-              <FormInput
+              <Label htmlFor="bed">Beds</Label>
+              <Input
                 type="number"
                 id="bed"
-                label="Bed Rooms"
                 value={formData.bed.toString()}
                 onChange={handleChange}
+                placeholder="Beds"
               />
             </div>
 
             <div className="col-span-2">
-              <FormInput
+              <Label htmlFor="bathroom">Baths</Label>
+
+              <Input
                 type="number"
                 id="bathroom"
-                label="Bath Rooms"
                 value={formData.bathroom.toString()}
                 onChange={handleChange}
+                placeholder="Baths"
               />
             </div>
             <div className="col-span-2">
-              <label htmlFor="parking" className="text-sm">
-                Parking
-              </label>
+              <Label htmlFor="parking">Parking</Label>
+              Parking
               <Switch
                 selected={formData.parking}
                 onChange={() => handleSwitchChange('parking')}
               />
             </div>
             <div className="col-span-2">
-              <label htmlFor="furnished" className="text-sm">
-                Furnished
-              </label>
+              <Label htmlFor="furnished">Furnished</Label>
               <Switch
                 selected={formData.furnished}
                 onChange={() => handleSwitchChange('furnished')}
               />
             </div>
             <div className="col-span-2">
-              <label htmlFor="featured" className="text-sm">
-                Featured
-              </label>
+              <Label htmlFor="featured">Featured</Label>
               <Switch
                 selected={formData.featured}
                 onChange={() => handleSwitchChange('featured')}
@@ -183,7 +182,13 @@ const AddListingForm = () => {
               <FileUpload fileChange={handleFileChange} />
             </div>
             <div className="col-span-full">
-              <button className="w-full btn-primary mt-6">Submit</button>
+              <Button
+                variant={'outline'}
+                size={'lg'}
+                className="bg-tertiary text-primary-foreground hover:bg-secondary-foreground hover:text-primary-foreground"
+              >
+                Submit
+              </Button>
             </div>
           </div>
         </fieldset>

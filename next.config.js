@@ -5,6 +5,7 @@ const nextConfig = {
   },
   images: {
     domains: ['loremflickr.com', 'images.unsplash.com'],
+    formats: ['image/avif', 'image/webp'],
   },
 }
 

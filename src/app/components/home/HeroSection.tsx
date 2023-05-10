@@ -12,7 +12,7 @@ const HeroSection: FC = () => {
             height={600}
             alt="hero"
             src="/images/hero/hero.svg"
-            className="lg:full"
+            className="lg:full "
           />
         </div>
 

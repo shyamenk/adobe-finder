@@ -1,16 +1,16 @@
-'use client';
+'use client'
 
-import classNames from 'classnames';
+import classNames from 'classnames'
 type SwitchProps = {
-  selected: boolean;
-  onChange: (selected: boolean) => void;
-};
+  selected: boolean
+  onChange: (selected: boolean) => void
+}
 const Switch = ({ selected, onChange }: SwitchProps) => {
   return (
     <div
       onClick={() => onChange(!selected)}
       className={classNames(
-        'mt-2 flex w-16 h-8 bg-gray-500 rounded-full transition-all duration-500 cursor-pointer',
+        'mt-2 flex w-16 h-8 dark:bg-accent bg-gray-200 text-white rounded-full transition-all duration-500 cursor-pointer',
         {
           'bg-secondary': selected,
         }
@@ -18,7 +18,7 @@ const Switch = ({ selected, onChange }: SwitchProps) => {
     >
       <span
         className={classNames(
-          'inset-y-0 start-0 z-10 m-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white text-gray-400 transition-all ',
+          'inset-y-0 start-0 dark:bg-tertiary bg-sky-500 z-10 m-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-  transition-all ',
           {
             'ml-8': selected,
           }
@@ -55,7 +55,7 @@ const Switch = ({ selected, onChange }: SwitchProps) => {
         )}
       </span>
     </div>
-  );
-};
+  )
+}
 
-export default Switch;
+export default Switch

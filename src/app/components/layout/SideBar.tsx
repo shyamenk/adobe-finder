@@ -12,33 +12,37 @@ import { RxChevronLeft } from 'react-icons/rx'
 const Sidebar = () => {
   const menus = [
     { name: 'Add Property', link: '/listings/add', icon: MdOutlineDashboard },
-    { name: 'user', link: '/', icon: AiOutlineUser },
-    { name: 'messages', link: '/', icon: FiMessageSquare },
+    { name: 'Edit Property', link: '/', icon: AiOutlineUser },
+    { name: 'View Property', link: '/', icon: FiMessageSquare },
     { name: 'analytics', link: '/', icon: TbReportAnalytics, margin: true },
     { name: 'File Manager', link: '/', icon: FiFolder },
     { name: 'Cart', link: '/', icon: FiShoppingCart },
     { name: 'Saved', link: '/', icon: AiOutlineHeart, margin: true },
     { name: 'Setting', link: '/', icon: RiSettings4Line },
   ]
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
   return (
     <section className="flex gap-6">
       <div
-        className={`min-h-screen bg-gray-200 ${
+        className={`overflow-auto h-screen bg-slate-100 dark:bg-[#0a0f1c]  ${
           open ? 'w-72' : 'w-16'
         } duration-500  px-4`}
       >
         <div className="py-3 flex justify-end">
+          {open && (
+            <h1 className="pr-24 text-2xl font-semibold text-tertiary">
+              Dashboard
+            </h1>
+          )}
           <RxChevronLeft
             size={26}
-            // className="cursor-pointer"
             className={` cursor-pointer right-3 top-9 w-7  rounded-full  ${
               !open && 'rotate-180'
             }`}
             onClick={() => setOpen(!open)}
           />
         </div>
-        <div className="mt-4 flex flex-col gap-4 relative">
+        <div className="mt-2 flex flex-col gap-2 relative">
           {menus?.map((menu, i) => (
             <Link
               href={menu.link}

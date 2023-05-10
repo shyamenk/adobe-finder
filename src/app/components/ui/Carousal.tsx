@@ -37,9 +37,9 @@ export default function Carousel({
             key={image}
             src={image}
             alt={image}
-            width={500}
-            height={300}
-            className="rounded-md shadow-md"
+            width={700}
+            height={768}
+            className="rounded-md shadow-md w-full"
           />
         ))}
       </div>
