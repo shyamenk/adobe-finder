@@ -5,7 +5,7 @@ import { FaBath, FaBed, FaCar } from 'react-icons/fa'
 import { MdWeekend } from 'react-icons/md'
 
 const BedIcon = () => (
-  <FaBed className="text-sky-500 hover:text-sky-600 w-6 h-6" />
+  <FaBed className="text-sky-500 hover:text-sky-600 w-6 h-8" />
 )
 const BathIcon = () => (
   <FaBath className="text-sky-500 hover:text-sky-600w-6 h-6" />
@@ -20,6 +20,7 @@ const FurnishedIcon = () => (
 import { Property } from '@prisma/client'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+
 interface PropertyCardProps {
   property: Property
 }
@@ -27,12 +28,15 @@ interface PropertyCardProps {
 const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
   return (
     <div className="relative  max-w-md rounded-lg overflow-hidden shadow-lg mx-auto border">
-      <Button
-        variant={'secondary'}
-        className=" absolute top-0 -left-0 inline-flex mt-3 ml-3 px-4  rounded-lg z-10 text-sm font-medium select-none"
-      >
-        Featured
-      </Button>
+      {property.isFeatured && (
+        <Button
+          variant={'secondary'}
+          className=" absolute top-0 -left-0 inline-flex mt-3 ml-3 px-4  rounded-lg z-10 text-sm font-medium select-none"
+        >
+          Featured
+        </Button>
+      )}
+
       <Link href={`/listings/${property.id}`}>
         <CustomImage
           src={property.imageUrls[4]}

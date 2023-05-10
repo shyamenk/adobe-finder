@@ -16,7 +16,6 @@ const NavBar: FC = () => {
   const navigation = [
     { id: 1, name: 'Home', href: '/' },
     { id: 2, name: 'Listing', href: '/listings' },
-    { id: 3, name: 'Search', href: '/search' },
     { id: 4, name: 'Favourite', href: '/favourites' },
     { id: 5, name: 'About', href: '/about' },
   ]
