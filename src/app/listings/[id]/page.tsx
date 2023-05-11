@@ -1,4 +1,5 @@
-import PropertyDetails from '@/components/listings/PropertyDetails'
+import Detail from '@/components/listings/Detail'
+// import PropertyDetails from '@/components/listings/PropertyDetails'
 import { prisma } from '@/config/prisma'
 
 interface Props {
@@ -20,7 +21,8 @@ const PropertyPage = async ({ params }: Props) => {
 
   return (
     <div>
-      <PropertyDetails property={property} />
+      {/* <PropertyDetails property={property} /> */}
+      <Detail property={property} />
     </div>
   )
 }

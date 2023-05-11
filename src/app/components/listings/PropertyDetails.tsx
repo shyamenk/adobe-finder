@@ -1,9 +1,11 @@
 'use client'
+// import EditListingForm from '@/components/listings/editFormData'
 import ImageCarousel from '@/components/ui/Carousal'
 import { Button } from '@/components/ui/button'
 import { formatCurrencyINR } from '@/utils/formatCurrencyINR'
 import { Property } from '@prisma/client'
 import Link from 'next/link'
+// import { useState } from 'react'
 import { AiFillStar } from 'react-icons/ai'
 import { FaBath, FaBed, FaCar } from 'react-icons/fa'
 import { MdWeekend } from 'react-icons/md'
@@ -18,6 +20,14 @@ interface PropertyDetailsProps {
 }
 
 const PropertyDetails = ({ property }: PropertyDetailsProps) => {
+  // const [isEditing, setIsEditing] = useState(false)
+
+  // // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // const handleEditClick = (e: any) => {
+  //   e.preventDefault()
+  //   setIsEditing(true)
+  // }
+
   return (
     <section className="py-4 px-4">
       <nav aria-label="breadcrumb" className="px-4">
@@ -132,6 +142,8 @@ const PropertyDetails = ({ property }: PropertyDetailsProps) => {
                 >
                   Contact
                 </Button>
+                {/* <Button onClick={handleEditClick}>Edit</Button>
+                {isEditing && <EditListingForm property={property} />} */}
               </div>
             </form>
           </div>

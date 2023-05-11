@@ -24,7 +24,7 @@ const Sidebar = () => {
   return (
     <section className="flex gap-6">
       <div
-        className={`overflow-auto h-screen bg-slate-100 dark:bg-[#0a0f1c]  ${
+        className={`overflow-auto   ${
           open ? 'w-72' : 'w-16'
         } duration-500  px-4`}
       >
