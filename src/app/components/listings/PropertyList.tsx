@@ -104,8 +104,8 @@ const PropertyList = ({ property }: PropertyProps) => {
             <SelectGroup>
               <SelectItem value="price-asc">Low to High</SelectItem>
               <SelectItem value="price-desc">High to Low</SelectItem>
-              <SelectItem value="name-asc">A to Z</SelectItem>
-              <SelectItem value="name-desc">Z to A</SelectItem>
+              <SelectItem value="name-asc">Sort A-Z</SelectItem>
+              <SelectItem value="name-desc">Sort Z-A</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
