@@ -7,9 +7,19 @@ import { Property } from '@prisma/client'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
 interface FormDataProps {
   name: string
+  type: string
   place: string
   description: string
   price: number
@@ -26,6 +36,7 @@ const AddListingForm = () => {
 
   const initailFormData = {
     name: '',
+    type: '',
     place: '',
     description: '',
     price: 0,
@@ -80,9 +91,9 @@ const AddListingForm = () => {
         method: 'POST',
         body: formDataWithFiles,
       })
-
       const property = (await response.json()) as Property
       console.log(property)
+      setFormdata(initailFormData)
     } catch (error) {
       console.error(error)
     }
@@ -97,7 +108,7 @@ const AddListingForm = () => {
       >
         <fieldset className="grid grid-cols-4 gap-6 rounded-md p-6 shadow-sm">
           <div className="col-span-full grid grid-cols-6 gap-4 lg:col-span-3">
-            <div className="col-span-full sm:col-span-3">
+            <div className="col-span-full sm:col-span-2">
               <Label htmlFor="name">Name</Label>
               <Input
                 type="text"
@@ -106,7 +117,30 @@ const AddListingForm = () => {
                 onChange={handleChange}
               />
             </div>
-            <div className="col-span-full sm:col-span-3">
+            <div className="col-span-full sm:col-span-2">
+              <Label htmlFor="type">Category</Label>
+              <Select
+                defaultValue="Apartment"
+                onValueChange={(value) =>
+                  setFormdata({ ...formData, type: value })
+                }
+              >
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Select Type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>Select Type</SelectLabel>
+                    <SelectItem value="Apartment">Apartment</SelectItem>
+                    <SelectItem value="Condoms">Condoms</SelectItem>
+                    <SelectItem value="Villa">Villa</SelectItem>
+                    <SelectItem value="Duplex">Duplex</SelectItem>
+                    <SelectItem value="Bungalow">Bungalow</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="col-span-full sm:col-span-2">
               <Label htmlFor="place">Place</Label>
               <Input
                 type="text"
@@ -158,7 +192,6 @@ const AddListingForm = () => {
             </div>
             <div className="col-span-2">
               <Label htmlFor="parking">Parking</Label>
-              Parking
               <Switch
                 selected={formData.parking}
                 onChange={() => handleSwitchChange('parking')}

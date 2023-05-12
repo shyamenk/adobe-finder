@@ -4,10 +4,6 @@ import Slider from '@/components/ui/Slider'
 import { Button } from '@/components/ui/button'
 import { Property } from '@prisma/client'
 import { Breadcrumb } from 'flowbite-react'
-// import Image from 'next/image'
-// import Link from 'next/link'
-import React from 'react'
-// import { AiFillCamera } from 'react-icons/ai'
 import { FaBath, FaBed, FaChartArea } from 'react-icons/fa'
 import { HiHome } from 'react-icons/hi'
 
@@ -15,7 +11,7 @@ interface PropertyDetailsProps {
   property: Property | null
 }
 
-const Detail = ({ property }: PropertyDetailsProps) => {
+const PropertyDetails = ({ property }: PropertyDetailsProps) => {
   return (
     <>
       <section className=" md:pb-10 pb-10 mt-10 px-2 md:px-10">
@@ -146,4 +142,4 @@ const Detail = ({ property }: PropertyDetailsProps) => {
   )
 }
 
-export default Detail
+export default PropertyDetails

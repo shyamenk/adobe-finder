@@ -21,6 +21,8 @@ export async function POST(req: Request) {
     userId,
   } = Object.fromEntries(formData.entries())
 
+  console.log(formData)
+
   const files: FormFields = {}
 
   const imageUrls = []

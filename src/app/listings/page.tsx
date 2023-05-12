@@ -1,4 +1,5 @@
 import { prisma } from '@/config/prisma'
+import dynamic from 'next/dynamic'
 
 import {
   Select,
@@ -13,7 +14,12 @@ import { Button } from '@/components/ui/button'
 import { BsFilter } from 'react-icons/bs'
 import { GoSearch } from 'react-icons/go'
 
-import PropertyCard from '@/components/ui/PropertyCard'
+const DynamicPropertyCard = dynamic(
+  () => import('@/components/ui/PropertyCard'),
+  {
+    loading: () => <p>Loading...</p>,
+  }
+)
 
 async function getAllProperties() {
   const response = await prisma.property.findMany({})
@@ -26,12 +32,12 @@ const page = async () => {
   return (
     <>
       <section>
-        <div className=" px-4  max-w-6xl sm:px-6 lg:px-8 lg:mb-16 ">
-          <h1 className="py-8 text-2xl font-semibold">
+        <div className="py-10 px-10">
+          {/* <h1 className="py-8 text-2xl font-semibold">
             Welcome to Adobe Finder{' '}
-          </h1>
+          </h1> */}
 
-          <div className="flex gap-6 ">
+          <div className="flex justify-start flex-col md:flex-row items-start gap-4 sm:gap-8">
             <Select>
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Category" />
@@ -64,14 +70,18 @@ const page = async () => {
               />
               <GoSearch className="absolute top-3 left-2 " />
             </div>
-            <Button variant={'outline'} className="text-sm ">
-              <BsFilter className="mr-2 h-4 w-4 " />
-              Apply filter
+            <Button
+              variant={'outline'}
+              className="text-sm flex items-center gap-2"
+            >
+              <BsFilter className="h-4 w-4 " />
+              <span>Filter</span>
             </Button>
           </div>
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-[30px] mt-10">
+
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-10">
             {property.map((item, idx) => (
-              <PropertyCard key={idx} property={item} />
+              <DynamicPropertyCard key={idx} property={item} />
             ))}
           </div>
         </div>

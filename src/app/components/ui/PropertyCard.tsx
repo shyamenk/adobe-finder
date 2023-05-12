@@ -45,7 +45,9 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
           height={280}
         />
         <div className="p-4">
-          <h3 className="text-xl font-semibold">{property.name}</h3>
+          <h3 className="text-xl font-semibold line-clamp-1">
+            {property.name}
+          </h3>
           <p className=" mt-2 line-clamp-2">{property.description}</p>
           <div className="md:flex md:items-center md:space-x-4 mb-2 mt-2">
             <BedIcon />

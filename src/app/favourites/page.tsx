@@ -1,8 +1,9 @@
-// import Details from '@/components/listings/Detail'
-import React from 'react'
+'use client'
 
 const FavouritePage = () => {
-  return <div className="w-full mx-auto px-10 py-10">{/* <Details /> */}</div>
+  return (
+    <div className="h-screen  py-20 text-center text-3xl">Favourite Page</div>
+  )
 }
 
 export default FavouritePage

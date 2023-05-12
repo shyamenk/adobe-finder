@@ -1,12 +1,12 @@
-import { SignIn } from '@clerk/nextjs/app-beta';
+import { SignIn } from '@clerk/nextjs/app-beta'
 
 interface PageProps {
   searchParams: {
-    redirectUrl?: string;
-  };
+    redirectUrl?: string
+  }
 }
 export default function Page({ searchParams }: PageProps) {
-  const { redirectUrl } = searchParams;
+  const { redirectUrl } = searchParams
   return (
     <section className="py-24">
       <div className="container">
@@ -15,5 +15,5 @@ export default function Page({ searchParams }: PageProps) {
         </div>
       </div>
     </section>
-  );
+  )
 }

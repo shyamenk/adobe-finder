@@ -8,6 +8,8 @@ interface FeaturedProps {
 }
 
 const Featured: FC<FeaturedProps> = ({ property }: FeaturedProps) => {
+  console.log(property)
+
   return (
     <div className="container mx-auto px-6 md:px-10 mb-10">
       <div className="mb-8">
