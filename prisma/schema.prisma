@@ -13,6 +13,7 @@ datasource db {
 model Property {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   name        String
+  type        String
   place       String
   description String
   price       Int

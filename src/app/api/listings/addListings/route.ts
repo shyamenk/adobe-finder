@@ -10,6 +10,7 @@ export async function POST(req: Request) {
   const formData = await req.formData()
   const {
     name,
+    type,
     place,
     description,
     price,
@@ -21,9 +22,8 @@ export async function POST(req: Request) {
     userId,
   } = Object.fromEntries(formData.entries())
 
-  console.log(formData)
-
   const files: FormFields = {}
+  console.log(formData)
 
   const imageUrls = []
   for (const entry of formData.entries()) {
@@ -55,6 +55,7 @@ export async function POST(req: Request) {
   const property = await prisma.property.create({
     data: {
       name: name as string,
+      type: type as string,
       place: place as string,
       description: description as string,
       price: Number(price),

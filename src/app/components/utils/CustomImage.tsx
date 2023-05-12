@@ -20,9 +20,8 @@ const CustomImage = ({ src, alt, width, height }: ImageProps) => {
       alt={alt}
       width={width}
       height={height}
-      placeholder="blur"
       loading="lazy"
-      blurDataURL={src}
+      // blurDataURL={src}
       className={cn(
         'duration-700 ease-in-out rounded-t-md ',
         isLoading
