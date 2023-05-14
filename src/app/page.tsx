@@ -12,11 +12,7 @@ const getProperty = async () => {
 
 export default async function Home() {
   const data = await getProperty()
-
   const property = data.slice(0, 6)
-
-  console.log(property)
-
   return (
     <>
       <HeroSection />

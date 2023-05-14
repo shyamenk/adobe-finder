@@ -1,10 +1,11 @@
+import PropertyDetails from '@/components/listings/PropertyDetailsPage'
 import { prisma } from '@/config/prisma'
 import { Metadata } from 'next'
-import dynamic from 'next/dynamic'
+// import dynamic from 'next/dynamic'
 
 type MetaDataProps = {
   params: { id: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  // searchParams: { [key: string]: string | string[] | undefined }
 }
 export async function generateMetadata({
   params,
@@ -27,9 +28,9 @@ interface Props {
   }
 }
 
-const DynamicPropertyDetails = dynamic(
-  () => import('@/components/listings/PropertyDetailsPage')
-)
+// const DynamicPropertyDetails = dynamic(
+//   () => import('@/components/listings/PropertyDetailsPage')
+// )
 const getPropertById = async (id: string) => {
   const data = await prisma.property.findUnique({
     where: {
@@ -43,7 +44,8 @@ const PropertyPage = async ({ params }: Props) => {
 
   return (
     <div>
-      <DynamicPropertyDetails property={property} />
+      {/* <DynamicPropertyDetails property={property} /> */}
+      <PropertyDetails property={property} />
     </div>
   )
 }

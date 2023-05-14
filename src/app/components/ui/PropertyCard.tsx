@@ -1,4 +1,3 @@
-import CustomImage from '@/components/utils/CustomImage'
 import { formatCurrencyINR } from '@/utils/formatCurrencyINR'
 
 import { FaBath, FaBed, FaCar } from 'react-icons/fa'
@@ -20,6 +19,7 @@ const FurnishedIcon = () => (
 import { Property } from '@prisma/client'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import CustomImage from '@/components/ui/CustomImage'
 
 interface PropertyCardProps {
   property: Property

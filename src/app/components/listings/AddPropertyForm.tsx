@@ -1,6 +1,5 @@
 'use client'
 import Switch from '@/components/ui/Switch'
-import FileUpload from '@/components/utils/FileUpload'
 import React, { useState } from 'react'
 import { useAuth } from '@clerk/nextjs'
 import { Property } from '@prisma/client'
@@ -16,6 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+// import { Textarea } from '../../../../components/ui/textarea'
 
 interface FormDataProps {
   name: string
@@ -24,11 +24,11 @@ interface FormDataProps {
   description: string
   price: number
   bed: number
-  bathroom: number
+  bath: number
   parking: boolean
   furnished: boolean
-  featured: boolean
-  [key: string]: string | number | boolean | File
+  isFeatured: boolean
+  [key: string]: string | number | boolean | string[]
 }
 
 const AddListingForm = () => {
@@ -41,20 +41,22 @@ const AddListingForm = () => {
     description: '',
     price: 0,
     bed: 0,
-    bathroom: 0,
+    bath: 0,
     parking: false,
     furnished: false,
-    featured: false,
+    isFeatured: false,
   }
 
   const [formData, setFormdata] = useState<FormDataProps>(initailFormData)
+  const [imageUrls, setImageUrls] = useState(['', '', '', '', ''])
 
-  const [files, setFiles] = useState<File[]>([])
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setFiles(Array.from(e.target.files))
-    }
+  const handleImageUrlChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    const newImageUrls = [...imageUrls]
+    newImageUrls[index] = event.target.value
+    setImageUrls(newImageUrls)
   }
   const handleSwitchChange = (switchName: keyof FormDataProps) => {
     setFormdata({
@@ -71,25 +73,14 @@ const AddListingForm = () => {
           : e.target.value,
     })
   }
+
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const formDataWithFiles = new FormData()
-    formDataWithFiles.append('userId', userId as string)
-    Object.entries(formData).forEach(([key, value]) => {
-      if (typeof value === 'boolean') {
-        formDataWithFiles.append(key, value.toString())
-      } else {
-        formDataWithFiles.append(key, String(value))
-      }
-    })
 
-    files.forEach((file, index) => {
-      formDataWithFiles.append(`file${index}`, file)
-    })
     try {
       const response = await fetch('/api/listings/addListings', {
         method: 'POST',
-        body: formDataWithFiles,
+        body: JSON.stringify({ formData, userId, imageUrls }),
       })
       const property = (await response.json()) as Property
       console.log(property)
@@ -149,7 +140,7 @@ const AddListingForm = () => {
                 onChange={handleChange}
               />
             </div>
-            <div className="col-span-full">
+            <div className="col-span-full ">
               <Label htmlFor="description">Description</Label>
               <Input
                 type="text"
@@ -184,8 +175,8 @@ const AddListingForm = () => {
 
               <Input
                 type="number"
-                id="bathroom"
-                value={formData.bathroom.toString()}
+                id="bath"
+                value={formData.bath.toString()}
                 onChange={handleChange}
                 placeholder="Baths"
               />
@@ -205,15 +196,27 @@ const AddListingForm = () => {
               />
             </div>
             <div className="col-span-2">
-              <Label htmlFor="featured">Featured</Label>
+              <Label htmlFor="isFeatured">Featured</Label>
               <Switch
-                selected={formData.featured}
-                onChange={() => handleSwitchChange('featured')}
+                selected={formData.isFeatured}
+                onChange={() => handleSwitchChange('isFeatured')}
               />
             </div>
-            <div className="col-span-full">
-              <FileUpload fileChange={handleFileChange} />
+            <div className="col-span-3">
+              {imageUrls.map((url, index) => (
+                <Label key={index} className="pb-2">
+                  Image URL {index + 1}:
+                  <Input
+                    type="text"
+                    name={`imageUrl${index}`}
+                    id={`imageUrl${index}`}
+                    value={url}
+                    onChange={(event) => handleImageUrlChange(event, index)}
+                  />
+                </Label>
+              ))}
             </div>
+
             <div className="col-span-full">
               <Button
                 variant={'outline'}

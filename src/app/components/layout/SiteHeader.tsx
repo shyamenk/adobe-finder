@@ -27,6 +27,7 @@ const NavBar: FC = () => {
           <div className="flex space-x-10">
             <div>
               <Link
+                prefetch={false}
                 href="/"
                 className="flex items-center justify-between px-2 py-4"
               >

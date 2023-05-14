@@ -1,4 +1,3 @@
-// import CustomImage from '@/components/utils/CustomImage'
 import { FC } from 'react'
 import { Property } from '@prisma/client'
 import PropertyCard from '@/components/ui/PropertyCard'
@@ -8,8 +7,6 @@ interface FeaturedProps {
 }
 
 const Featured: FC<FeaturedProps> = ({ property }: FeaturedProps) => {
-  console.log(property)
-
   return (
     <div className="container mx-auto px-6 md:px-10 mb-10">
       <div className="mb-8">

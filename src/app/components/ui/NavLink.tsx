@@ -16,7 +16,7 @@ const NavLink = ({ href, className = '', children, ...props }: Props) => {
     : className
 
   return (
-    <Link href={href} className={isActiveClass} {...props}>
+    <Link prefetch={false} href={href} className={isActiveClass} {...props}>
       {children}
     </Link>
   )

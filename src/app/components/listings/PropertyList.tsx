@@ -12,11 +12,12 @@ import { Input } from '@/components/ui/input'
 
 import { GoSearch } from 'react-icons/go'
 import dynamic from 'next/dynamic'
+import Spinner from '@/components/ui/Spinner'
 
 const DynamicPropertyCard = dynamic(
   () => import('@/components/ui/PropertyCard'),
   {
-    loading: () => <p>Loading...</p>,
+    loading: () => <Spinner />,
   }
 )
 

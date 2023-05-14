@@ -4,7 +4,11 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ['wlbjdywcdbpyogizztkl.supabase.co'],
+    domains: [
+      'wlbjdywcdbpyogizztkl.supabase.co',
+      'images.unsplash.com',
+      'plus.unsplash.com',
+    ],
     formats: ['image/avif', 'image/webp'],
   },
 }

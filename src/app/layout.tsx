@@ -1,20 +1,20 @@
 import { Providers } from '@/Providers'
 import SiteHeader from '@/components/layout/SiteHeader'
-import SiteFooter from '@/components/layout/SiteFooter'
 import { ClerkProvider } from '@clerk/nextjs/app-beta'
 
 import './styles/globals.css'
+import dynamic from 'next/dynamic'
 
 export const metadata = {
   title: 'AdobeFinder | Discover Your Dream Home',
   description: 'The Ultimate Destination for Property Hunting',
 }
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const DynamicFooter = dynamic(() => import('@/components/layout/SiteFooter'))
   return (
     <html
       lang="en"
@@ -26,7 +26,7 @@ export default function RootLayout({
           <Providers>
             <SiteHeader />
             <main>{children}</main>
-            <SiteFooter />
+            <DynamicFooter />
           </Providers>
         </ClerkProvider>
       </body>
