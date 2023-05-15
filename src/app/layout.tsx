@@ -1,9 +1,9 @@
 import { Providers } from '@/Providers'
 import SiteHeader from '@/components/layout/SiteHeader'
 import { ClerkProvider } from '@clerk/nextjs'
-
 import './styles/globals.css'
 import dynamic from 'next/dynamic'
+import { Toaster } from 'react-hot-toast'
 
 export const metadata = {
   title: 'AdobeFinder | Discover Your Dream Home',
@@ -24,6 +24,7 @@ export default function RootLayout({
       <body>
         <ClerkProvider>
           <Providers>
+            <Toaster />
             <SiteHeader />
             <main>{children}</main>
             <DynamicFooter />

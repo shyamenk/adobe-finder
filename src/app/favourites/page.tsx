@@ -19,7 +19,7 @@ async function getfavourites(userId: string) {
 const FavouritePage = async () => {
   const user = await currentUser()
   if (!user) return <div>Not logged in</div>
-  if (!user) redirect('/sign-in?redirectUrl=/')
+  if (!user) redirect('/')
 
   const favouriteProperties = await getfavourites(user.id)
 

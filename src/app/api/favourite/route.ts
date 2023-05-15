@@ -7,13 +7,25 @@ export async function POST(req: Request) {
 
   if (!userId) return NextResponse.redirect('/sign-in')
   try {
-    const addToFavourite = await prisma.favorite.create({
-      data: {
-        userId,
+    const isFavourite = await prisma.favorite.findUnique({
+      where: {
         propertyId,
       },
     })
-    return NextResponse.json({ addToFavourite })
+
+    if (isFavourite) {
+      return NextResponse.json({
+        message: 'Its Already in your favorite List',
+      })
+    } else {
+      await prisma.favorite.create({
+        data: {
+          propertyId,
+          userId,
+        },
+      })
+      return NextResponse.json({ message: 'Succesfully Added ' })
+    }
   } catch (error) {
     return NextResponse.json(error)
   }
