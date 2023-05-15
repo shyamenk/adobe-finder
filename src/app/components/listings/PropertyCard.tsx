@@ -1,5 +1,4 @@
 import { formatCurrencyINR } from '@/utils/formatCurrencyINR'
-
 import { FaBath, FaBed, FaCar } from 'react-icons/fa'
 import { MdWeekend } from 'react-icons/md'
 
@@ -20,6 +19,7 @@ import { Property } from '@prisma/client'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import CustomImage from '@/components/ui/CustomImage'
+import FavouriteItem from '@/components/favourites/FavouriteItem'
 
 interface PropertyCardProps {
   property: Property
@@ -36,7 +36,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
           Featured
         </Button>
       )}
-
+      <FavouriteItem propertyId={property.id} />
       <Link href={`/listings/${property.id}`}>
         <CustomImage
           src={property.imageUrls[4]}

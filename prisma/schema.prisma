@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Property {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   type        String
   place       String
@@ -24,4 +24,14 @@ model Property {
   isFeatured  Boolean
   imageUrls   String[]
   userId      String?
+  Favourite   Favorite[]
+}
+
+model Favorite {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  Property   Property? @relation(fields: [propertyId], references: [id])
+  propertyId String?   @unique @db.ObjectId
 }

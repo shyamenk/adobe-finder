@@ -1,6 +1,6 @@
 import { Providers } from '@/Providers'
 import SiteHeader from '@/components/layout/SiteHeader'
-import { ClerkProvider } from '@clerk/nextjs/app-beta'
+import { ClerkProvider } from '@clerk/nextjs'
 
 import './styles/globals.css'
 import dynamic from 'next/dynamic'

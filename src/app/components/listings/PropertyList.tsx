@@ -15,7 +15,7 @@ import dynamic from 'next/dynamic'
 import Spinner from '@/components/ui/Spinner'
 
 const DynamicPropertyCard = dynamic(
-  () => import('@/components/ui/PropertyCard'),
+  () => import('@/components/listings/PropertyCard'),
   {
     loading: () => <Spinner />,
   }

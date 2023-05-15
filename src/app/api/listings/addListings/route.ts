@@ -3,7 +3,7 @@ import { prisma } from '@/config/prisma'
 import { NextResponse } from 'next/server'
 
 export async function POST(req: Request) {
-  const res = await req.json() //
+  const { res } = await req.json()
 
   const property = await prisma.property.create({
     data: {

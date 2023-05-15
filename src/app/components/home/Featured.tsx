@@ -1,6 +1,7 @@
+'use client'
 import { FC } from 'react'
 import { Property } from '@prisma/client'
-import PropertyCard from '@/components/ui/PropertyCard'
+import PropertyCard from '@/components/listings/PropertyCard'
 
 interface FeaturedProps {
   property: Property[]

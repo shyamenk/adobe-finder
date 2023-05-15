@@ -14,7 +14,6 @@ const HeroSection: FC = () => {
             loading="lazy"
             src="/images/hero/hero.svg"
             className="lg:full "
-            placeholder="blur"
           />
         </div>
 
