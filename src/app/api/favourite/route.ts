@@ -5,7 +5,7 @@ export async function POST(req: Request) {
   const { propertyId } = await req.json()
   const { userId } = auth()
 
-  if (!userId) return NextResponse.redirect('/sign-in')
+  if (!userId) return
   try {
     const isFavourite = await prisma.favorite.findUnique({
       where: {
