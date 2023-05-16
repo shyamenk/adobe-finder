@@ -8,6 +8,7 @@ const nextConfig = {
       'wlbjdywcdbpyogizztkl.supabase.co',
       'images.unsplash.com',
       'plus.unsplash.com',
+      'lh3.googleusercontent.com',
     ],
     formats: ['image/avif', 'image/webp'],
   },

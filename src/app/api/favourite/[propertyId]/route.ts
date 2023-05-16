@@ -1,6 +1,7 @@
 import { prisma } from '@/config/prisma'
 import { NextResponse } from 'next/server'
-
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/api/auth/[...nextauth]/route'
 type DeleteContext = {
   params: {
     propertyId: string
@@ -9,10 +10,15 @@ type DeleteContext = {
 export async function DELETE(req: Request, context: DeleteContext) {
   const { propertyId } = context.params
 
+  const session = await getServerSession(authOptions)
+
+  if (!session) return
+
   try {
-    await prisma.favorite.delete({
+    await prisma.favorite.deleteMany({
       where: {
         propertyId,
+        userId: session?.user?.id,
       },
     })
     return NextResponse.json({ message: 'Succesfully Removed' })
@@ -27,10 +33,13 @@ type Props = {
   }
 }
 export async function GET(req: Request, { params }: Props) {
+  const session = await getServerSession(authOptions)
+
   try {
-    const favourite = await prisma.favorite.findUnique({
+    const favourite = await prisma.favorite.findFirst({
       where: {
         propertyId: params.propertyId,
+        userId: session?.user?.id,
       },
     })
 

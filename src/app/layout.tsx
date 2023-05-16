@@ -1,9 +1,9 @@
 import { Providers } from '@/Providers'
 import SiteHeader from '@/components/layout/SiteHeader'
-import { ClerkProvider } from '@clerk/nextjs'
 import './styles/globals.css'
 import dynamic from 'next/dynamic'
 import { Toaster } from 'react-hot-toast'
+import AuthProvider from '@/components/AuthProvider'
 
 export const metadata = {
   title: 'AdobeFinder | Discover Your Dream Home',
@@ -22,14 +22,14 @@ export default function RootLayout({
       className={`scroll-smooth antialiased`}
     >
       <body>
-        <ClerkProvider>
+        <AuthProvider>
           <Providers>
             <Toaster />
             <SiteHeader />
             <main>{children}</main>
             <DynamicFooter />
           </Providers>
-        </ClerkProvider>
+        </AuthProvider>
       </body>
     </html>
   )

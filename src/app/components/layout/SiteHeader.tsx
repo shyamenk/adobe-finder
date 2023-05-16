@@ -3,12 +3,10 @@ import { FC } from 'react'
 import { useState } from 'react'
 import ThemeButton from '@/components/ui/ThemeChanger'
 import Link from 'next/link'
-import { SignInButton, UserButton } from '@clerk/nextjs'
-import { SignedIn, SignedOut } from '@clerk/nextjs/app-beta/client'
-import { MdOutlineRealEstateAgent } from 'react-icons/md'
-import { RxHamburgerMenu } from 'react-icons/rx'
-import { AiOutlineClose } from 'react-icons/ai'
+
 import NavLink from '@/components/ui/NavLink'
+import SignInButton from '@/components/ui/SignInButton'
+import { HomeIcon, LucideShieldClose, MenuIcon } from 'lucide-react'
 
 const NavBar: FC = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false)
@@ -27,11 +25,11 @@ const NavBar: FC = () => {
           <div className="flex space-x-10">
             <div>
               <Link
-                // prefetch={false}
+                prefetch={false}
                 href="/"
                 className="flex items-center justify-between px-2 py-4"
               >
-                <MdOutlineRealEstateAgent className="mr-2 h-8 w-8" />
+                <HomeIcon className="mr-2 h-8 w-8" />
                 <span className="text-lg font-semibold">
                   <span className="font-mono text-4xl text-sky-500">Adobe</span>{' '}
                   <span>Finder</span>
@@ -52,16 +50,8 @@ const NavBar: FC = () => {
           </div>
           <div className="hidden items-center space-x-4 md:flex ">
             <ThemeButton />
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-            <SignedOut>
-              <SignInButton mode="modal">
-                <button className="rounded-full border border-gray-400 px-4 py-1 font-semibold hover:border-none hover:bg-secondary hover:text-white dark:border-none dark:bg-secondary dark:text-primary">
-                  Sign in
-                </button>
-              </SignInButton>
-            </SignedOut>
+
+            <SignInButton />
           </div>
           <div className="flex items-center md:hidden">
             <button
@@ -69,9 +59,9 @@ const NavBar: FC = () => {
               onClick={() => setShowMobileMenu(!showMobileMenu)}
             >
               {showMobileMenu ? (
-                <AiOutlineClose className="h-6 w-6 text-gray-500 hover:text-green-500" />
+                <LucideShieldClose className="h-6 w-6 text-gray-500 hover:text-green-500" />
               ) : (
-                <RxHamburgerMenu className="h-6 w-6 text-gray-500 hover:text-green-500" />
+                <MenuIcon className="h-6 w-6 text-gray-500 hover:text-green-500" />
               )}
             </button>
           </div>
@@ -85,10 +75,13 @@ const NavBar: FC = () => {
                 key={navLink.id}
                 className=" text-md block  py-2 font-semibold"
               >
-                <Link href={navLink.href}>{navLink.name}</Link>
+                <Link prefetch={false} href={navLink.href}>
+                  {navLink.name}
+                </Link>
               </li>
             ))}
           </ul>
+          <SignInButton />
         </div>
       )}
     </nav>

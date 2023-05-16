@@ -1,7 +1,7 @@
-import { currentUser } from '@clerk/nextjs'
-
-import FavouriteList from '@/components/favourites/FavouriteList'
 import { prisma } from '@/config/prisma'
+import { getServerSession } from 'next-auth/next'
+import { authOptions } from '@/api/auth/[...nextauth]/route'
+import FavouriteList from '@/components/favourites/FavouriteList'
 import { redirect } from 'next/navigation'
 
 async function getfavourites(userId: string) {
@@ -17,14 +17,22 @@ async function getfavourites(userId: string) {
 }
 
 const FavouritePage = async () => {
-  const user = await currentUser()
-  if (!user) return <div>Not logged in</div>
-  if (!user) redirect('/')
+  const session = await getServerSession(authOptions)
 
-  const favouriteProperties = await getfavourites(user.id)
+  if (!session) {
+    redirect('/signin?callbackUrl=/')
+  }
+
+  const userId = session?.user?.id
+
+  const favouriteProperties = await getfavourites(userId || '')
 
   return (
-    <div className=" py-10">
+    <div
+      className={`py-10  ${
+        favouriteProperties.length ? 'overflow-auto' : 'h-screen'
+      }`}
+    >
       <h1 className="text-sky-500 pt-6 text-3xl px-10">Your Favourites</h1>
       <FavouriteList favouriteProperties={favouriteProperties} />
     </div>

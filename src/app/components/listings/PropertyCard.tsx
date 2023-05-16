@@ -1,25 +1,25 @@
 import { formatCurrencyINR } from '@/utils/formatCurrencyINR'
-import { FaBath, FaBed, FaCar } from 'react-icons/fa'
-import { MdWeekend } from 'react-icons/md'
 
-const BedIcon = () => (
-  <FaBed className="text-sky-500 hover:text-sky-600 w-6 h-8" />
-)
-const BathIcon = () => (
-  <FaBath className="text-sky-500 hover:text-sky-600w-6 h-6" />
-)
-const ParkingIcon = () => (
-  <FaCar className="text-sky-500 hover:text-sky-600 w-6 h-6" />
-)
-const FurnishedIcon = () => (
-  <MdWeekend className="text-sky-500 hover:text-sky-600 w-6 h-6" />
-)
-
-import { Property } from '@prisma/client'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import CustomImage from '@/components/ui/CustomImage'
 import FavouriteItem from '@/components/favourites/FavouriteItem'
+import { Bath, Bed, Car } from 'lucide-react'
+import { MdOutlineWeekend } from 'react-icons/md'
+import { Property } from '@prisma/client'
+
+const BedIcon = () => (
+  <Bed className="text-sky-500 hover:text-sky-600 w-6 h-8" />
+)
+const BathIcon = () => (
+  <Bath className="text-sky-500 hover:text-sky-600w-6 h-6" />
+)
+const ParkingIcon = () => (
+  <Car className="text-sky-500 hover:text-sky-600 w-6 h-6" />
+)
+const FurnishedIcon = () => (
+  <MdOutlineWeekend className="text-sky-500 hover:text-sky-600 w-6 h-6" />
+)
 
 interface PropertyCardProps {
   property: Property
