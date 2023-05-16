@@ -1,7 +1,8 @@
 'use client'
 import Switch from '@/components/ui/Switch'
 import React, { useState } from 'react'
-import { useAuth } from '@clerk/nextjs'
+import { useSession } from 'next-auth/react'
+
 import { Property } from '@prisma/client'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -31,7 +32,9 @@ interface FormDataProps {
 }
 
 const AddListingForm = () => {
-  const { userId } = useAuth()
+  const { data: session } = useSession()
+
+  const userId = session?.user.id
 
   const initailFormData = {
     name: '',
