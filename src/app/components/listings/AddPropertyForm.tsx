@@ -2,7 +2,6 @@
 import Switch from '@/components/ui/Switch'
 import React, { useState } from 'react'
 import { useSession } from 'next-auth/react'
-
 import { Property } from '@prisma/client'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -16,6 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { toast } from 'react-hot-toast'
 
 interface FormDataProps {
   name: string
@@ -49,8 +49,10 @@ const AddListingForm = () => {
     isFeatured: false,
   }
 
+  const initialImageData = ['', '', '', '', '']
+
   const [formData, setFormdata] = useState<FormDataProps>(initailFormData)
-  const [imageUrls, setImageUrls] = useState(['', '', '', '', ''])
+  const [imageUrls, setImageUrls] = useState(initialImageData)
 
   const handleImageUrlChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -78,7 +80,7 @@ const AddListingForm = () => {
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
+    const toastId = toast.loading('Loading...')
     try {
       const response = await fetch('/api/listings/addListings', {
         method: 'POST',
@@ -86,8 +88,13 @@ const AddListingForm = () => {
       })
       const property = (await response.json()) as Property
       console.log(property)
+      toast.success('Succesfully Added', {
+        id: toastId,
+      })
       setFormdata(initailFormData)
+      setImageUrls(['', '', '', '', ''])
     } catch (error) {
+      toast.error('Something went wrong....')
       console.error(error)
     }
   }
@@ -124,11 +131,11 @@ const AddListingForm = () => {
                 <SelectContent>
                   <SelectGroup>
                     <SelectLabel>Select Type</SelectLabel>
-                    <SelectItem value="Apartment">Apartment</SelectItem>
-                    <SelectItem value="Condoms">Condoms</SelectItem>
-                    <SelectItem value="Villa">Villa</SelectItem>
-                    <SelectItem value="Duplex">Duplex</SelectItem>
-                    <SelectItem value="Bungalow">Bungalow</SelectItem>
+                    <SelectItem value="apartment">Apartment</SelectItem>
+                    <SelectItem value="condoms">Condoms</SelectItem>
+                    <SelectItem value="villa">Villa</SelectItem>
+                    <SelectItem value="duplex">Duplex</SelectItem>
+                    <SelectItem value="bungalow">Bungalow</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
