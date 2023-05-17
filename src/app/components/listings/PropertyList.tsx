@@ -48,7 +48,6 @@ const PropertyList = ({ property }: PropertyProps) => {
   const [sortType, setSortType] = useState<string>()
   const [search, setSearch] = useState<string>()
 
-  // Filter the property data based on property type
   const filteredProperty = useMemo(() => {
     if (!propertyType) {
       return property

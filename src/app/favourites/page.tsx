@@ -1,19 +1,18 @@
-import { prisma } from '@/config/prisma'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/api/auth/[...nextauth]/route'
 import FavouriteList from '@/components/favourites/FavouriteList'
 import { redirect } from 'next/navigation'
+import { prisma } from '@/config/prisma'
 
-async function getfavourites(userId: string) {
-  const data = prisma.favorite.findMany({
-    where: {
-      userId,
-    },
-    include: {
-      Property: true,
-    },
+// export const revalidate = 0
+
+async function getfavourites() {
+  const session = await getServerSession(authOptions)
+  const favorites = await prisma.favorite.findMany({
+    where: { userId: session?.user?.id },
+    include: { Property: true },
   })
-  return data
+  return favorites
 }
 
 const FavouritePage = async () => {
@@ -23,9 +22,7 @@ const FavouritePage = async () => {
     redirect('/signin?callbackUrl=/')
   }
 
-  const userId = session?.user?.id
-
-  const favouriteProperties = await getfavourites(userId || '')
+  const favouriteProperties = await getfavourites()
 
   return (
     <div
